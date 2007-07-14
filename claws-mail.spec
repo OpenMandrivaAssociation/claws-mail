@@ -1,6 +1,6 @@
 %define pre         %nil
 %define name        claws-mail
-%define version     2.9.2
+%define version     2.10.0
 %define version_name    %{name}-%{version}
 %define release     %mkrel 1
 %define iconname    %{name}.png
@@ -251,6 +251,7 @@ EOF
 
 desktop-file-install --vendor="" \
 --add-category="X-MandrivaLinux-Internet-Mail" \
+--remove-key="Info" \
 --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/* 
  
 %find_lang %{name}
@@ -284,16 +285,6 @@ rm -rf %{buildroot}
 %dir %{_docdir}/claws-mail
 %doc %{_docdir}/claws-mail/RELEASE_NOTES
 %dir %{_docdir}/claws-mail/manual
-%dir %{_docdir}/claws-mail/manual/en
-%doc %{_docdir}/claws-mail/manual/en/*
-%dir %{_docdir}/claws-mail/manual/es
-%doc %{_docdir}/claws-mail/manual/es/*
-%dir %{_docdir}/claws-mail/manual/en
-%doc %{_docdir}/claws-mail/manual/en/*
-%dir %{_docdir}/claws-mail/manual/fr
-%doc %{_docdir}/claws-mail/manual/fr/*
-%dir %{_docdir}/claws-mail/manual/pl
-%doc %{_docdir}/claws-mail/manual/pl/*
 
 %files -n %name-devel
 %defattr(-,root,root)
