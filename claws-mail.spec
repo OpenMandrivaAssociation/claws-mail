@@ -1,6 +1,6 @@
 %define pre         %nil
 %define name        claws-mail
-%define version     2.10.0
+%define version     3.0.0
 %define version_name    %{name}-%{version}
 %define release     %mkrel 1
 %define iconname    %{name}.png
@@ -238,21 +238,10 @@ install -m644 %{name}.png $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/48x48/apps/
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/claws-mail/
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/claws-mail/manual/
 
-cat > %{buildroot}%{_menudir}/%{name} << EOF
-?package(%{name}):\
-    command="%{name}" \
-        icon="%{iconname}" \
-    title="Sylpheed Claws" \
-    longtitle="%{Summary}" \
-    needs="x11" \         
-    section="Internet/Mail" \
-        xdg="true"
-EOF
-
 desktop-file-install --vendor="" \
---add-category="X-MandrivaLinux-Internet-Mail" \
---remove-key="Info" \
---dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/* 
+	--remove-key="Info" --remove-key='Encoding' \
+	--dir $RPM_BUILD_ROOT%{_datadir}/applications \
+	$RPM_BUILD_ROOT%{_datadir}/applications/* 
  
 %find_lang %{name}
 
@@ -277,7 +266,6 @@ rm -rf %{buildroot}
 %{_datadir}/applications/claws-mail.desktop
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/plugins
-%{_menudir}/%{name}
 %{_miconsdir}/%{iconname}
 %{_iconsdir}/%{iconname}
 %{_liconsdir}/%{iconname}
