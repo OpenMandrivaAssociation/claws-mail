@@ -13,7 +13,7 @@ Name:               %{name}
 Version:            %{version}
 Release:            %{release}
 Source:             %{name}-%{version}.tar.bz2 
-License:            GPL
+License:            GPLv3+
 URL:                http://www.claws-mail.org/
 Group:              %{Group}
 Epoch:              1
