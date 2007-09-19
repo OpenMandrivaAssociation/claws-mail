@@ -1,25 +1,25 @@
 %define pre         %nil
 %define name        claws-mail
-%define version     3.0.0
+%define version     3.0.1
 %define version_name    %{name}-%{version}
 %define release     %mkrel 1
 %define iconname    %{name}.png
 %define Group       Networking/Mail
 %define Summary     Enhanced version of the Sylpheed e-mail client
- 
+
 
 Summary:            %{Summary}
 Name:               %{name}
 Version:            %{version}
 Release:            %{release}
-Source:             %{name}-%{version}.tar.bz2 
+Source:             %{name}-%{version}.tar.bz2
 License:            GPLv3+
 URL:                http://www.claws-mail.org/
 Group:              %{Group}
 Epoch:              1
 Buildroot:          %{_tmppath}/%{version_name}-%{release}-buildroot
 BuildRequires:      openldap-devel
-BuildRequires:      aspell-devel 
+BuildRequires:      aspell-devel
 BuildRequires:      libgdk_pixbuf2.0-devel >= 2.6.4
 BuildRequires:      pilot-link-devel
 BuildRequires:      ImageMagick
@@ -32,8 +32,8 @@ BuildRequires:      clamav-devel
 BuildRequires:      gpgme-devel > 0.4.5
 BuildRequires:      desktop-file-utils
 BuildRequires:      libsm-devel
-Requires:           common-licenses 
-Requires:           aspell-dictionary    
+Requires:           common-licenses
+Requires:           aspell-dictionary
 Obsoletes:          %{name}-tools
 Provides:           %{name}-tools
 # Fix upgrade from mdk 2006:
@@ -119,14 +119,14 @@ This package uses the spamd SpamAssassin server to check for spam mail.
 
 %package clamav-plugin
 Summary: Clamav plugin for %name
-Group: %Group 
+Group: %Group
 Requires: %{name} = 1:%{version}
 Requires: clamav
 Provides: sylpheed-claws2-clamav-plugin
 Obsoletes: sylpheed-claws2-clamav-plugin
 
 %description clamav-plugin
-This plugin will scan incoming messages for viruses using 
+This plugin will scan incoming messages for viruses using
 Clam AntiVirus.
 - See README for configuration and set-up info.
 
@@ -194,14 +194,14 @@ Group: %{Group}
 BuildRequires: bogofilter
 Requires: %{name} = 1:%{version}
 Requires: bogofilter
- 
+
 
 %description bogofilter-plugin
 This plugin provides spam filtering and learning
 
 %prep
 %setup -q
- 
+
 %build
 
 %configure2_5x --enable-aspell --enable-jpilot --enable-openssl --enable-ldap \
@@ -213,15 +213,15 @@ This plugin provides spam filtering and learning
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%makeinstall_std  
+%makeinstall_std
 
 # multiarch
-%multiarch_includes %{buildroot}%{_includedir}/%{name}/config.h 
- 
+%multiarch_includes %{buildroot}%{_includedir}/%{name}/config.h
+
 ##remove duplicate man#
 rm -rfd  $RPM_BUILD_ROOT/usr/share/man
-## remove unneeded file 
-rm -rf tools/Makefile*   
+## remove unneeded file
+#rm -rf tools/Makefile*
 ## remove unneeded devel files
 rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/plugins/*.*a
 
@@ -235,34 +235,29 @@ mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/48x48/apps/
 install -m644 %{name}.desktop $RPM_BUILD_ROOT%{_datadir}/applications/
 install -m644 %{name}.png $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/48x48/apps/
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/claws-mail/
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/claws-mail/manual/
+cp -a ABOUT-NLS COPYING AUTHORS ChangeLog* NEWS README* INSTALL* TODO* RELEASE_NOTES tools %{buildroot}%{_docdir}/claws-mail/
+rm -f %{buildroot}%{_docdir}/claws-mail/tools/Makefile*
 
 desktop-file-install --vendor="" \
 	--remove-key="Info" --remove-key='Encoding' \
 	--dir $RPM_BUILD_ROOT%{_datadir}/applications \
-	$RPM_BUILD_ROOT%{_datadir}/applications/* 
- 
+	$RPM_BUILD_ROOT%{_datadir}/applications/*
+
 %find_lang %{name}
 
 %post
 %{update_menus}
-     
+
 %postun
 %{clean_menus}
 
 %clean
-rm -rf %{buildroot} 
+rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root)
-%doc ABOUT-NLS COPYING AUTHORS ChangeLog* NEWS README* INSTALL* TODO*
-%doc RELEASE_NOTES
-%doc tools
 %{_bindir}/%{name}
 %{_bindir}/sylpheed-claws
-%dir %{_datadir}/%{name}
-#%{_datadir}/%{name}/manual/*/%{name}-manual.* 
 %{_datadir}/applications/claws-mail.desktop
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/plugins
@@ -270,9 +265,7 @@ rm -rf %{buildroot}
 %{_iconsdir}/%{iconname}
 %{_liconsdir}/%{iconname}
 %{_datadir}/icons/hicolor/48x48/apps/claws-mail.png
-%dir %{_docdir}/claws-mail
-%doc %{_docdir}/claws-mail/RELEASE_NOTES
-%dir %{_docdir}/claws-mail/manual
+%{_docdir}/claws-mail
 
 %files -n %name-devel
 %defattr(-,root,root)
@@ -283,7 +276,7 @@ rm -rf %{buildroot}
 %files spamassassin-plugin
 %defattr(-,root,root)
 %doc src/plugins/spamassassin/README
-%{_libdir}/%{name}/plugins/spamassassin*.so                                       
+%{_libdir}/%{name}/plugins/spamassassin*.so
 
 %files clamav-plugin
 %defattr(-,root,root)
@@ -293,7 +286,7 @@ rm -rf %{buildroot}
 %files dillo_viewer-plugin
 %defattr(-,root,root)
 %doc src/plugins/clamav/README
-%{_libdir}/%{name}/plugins/dillo*.so 
+%{_libdir}/%{name}/plugins/dillo*.so
 
 %files trayicon-plugin
 %defattr(-,root,root)
@@ -316,6 +309,6 @@ rm -rf %{buildroot}
 
 %files bogofilter-plugin
 %defattr(-,root,root)
-%{_libdir}/%{name}/plugins/bogofilter.so 
+%{_libdir}/%{name}/plugins/bogofilter.so
 
 
