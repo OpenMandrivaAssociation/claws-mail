@@ -5,7 +5,7 @@
 %define release     %mkrel 1
 %define iconname    %{name}.png
 %define Group       Networking/Mail
-%define Summary     Enhanced version of the Sylpheed e-mail client
+%define Summary     Fast, lightweight and user-friendly GTK2 based email client
 
 
 Summary:            %{Summary}
