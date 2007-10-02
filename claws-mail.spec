@@ -1,6 +1,6 @@
 %define pre         %nil
 %define name        claws-mail
-%define version     3.0.1
+%define version     3.0.2
 %define version_name    %{name}-%{version}
 %define release     %mkrel 1
 %define iconname    %{name}.png
