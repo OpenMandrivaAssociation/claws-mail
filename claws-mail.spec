@@ -1,51 +1,45 @@
 %define pre         %nil
-%define name        claws-mail
-%define version     3.0.2
 %define version_name    %{name}-%{version}
-%define release     %mkrel 1
 %define iconname    %{name}.png
-%define Group       Networking/Mail
-%define Summary     Fast, lightweight and user-friendly GTK2 based email client
 
-
-Summary:            %{Summary}
-Name:               %{name}
-Version:            %{version}
-Release:            %{release}
-Source:             %{name}-%{version}.tar.bz2
-License:            GPLv3+
-URL:                http://www.claws-mail.org/
-Group:              %{Group}
-Epoch:              1
-Buildroot:          %{_tmppath}/%{version_name}-%{release}-buildroot
-BuildRequires:      openldap-devel
-BuildRequires:      aspell-devel
-BuildRequires:      libgdk_pixbuf2.0-devel >= 2.6.4
-BuildRequires:      pilot-link-devel
-BuildRequires:      ImageMagick
-BuildRequires:      libltdl-devel
-BuildRequires:      multiarch-utils
-BuildRequires:      libetpan-devel >= 0.42
-BuildRequires:      libgnomeprintui-devel
-BuildRequires:      spamassassin-spamd >= 3.0.0
-BuildRequires:      clamav-devel
-BuildRequires:      gpgme-devel > 0.4.5
-BuildRequires:      desktop-file-utils
-BuildRequires:      libsm-devel
-Requires:           common-licenses
-Requires:           aspell-dictionary
-Obsoletes:          %{name}-tools
-Provides:           %{name}-tools
+Summary:	The user-friendly, lightweight and fast GTK2 based email client
+Name:		claws-mail
+Version:	3.0.2
+Release:	%mkrel 2
+Epoch:		1
+License:	GPLv3+
+Group:		Networking/Mail
+URL:		http://www.claws-mail.org
+Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
+BuildRequires:	openldap-devel
+BuildRequires:	aspell-devel
+BuildRequires:	libgdk_pixbuf2.0-devel >= 2.6.4
+BuildRequires:	pilot-link-devel
+BuildRequires:	ImageMagick
+BuildRequires:	libltdl-devel
+BuildRequires:	multiarch-utils
+BuildRequires:	libetpan-devel >= 0.42
+BuildRequires:	libgnomeprintui-devel
+BuildRequires:	spamassassin-spamd >= 3.0.0
+BuildRequires:	clamav-devel
+BuildRequires:	gpgme-devel > 0.4.5
+BuildRequires:	desktop-file-utils
+BuildRequires:	libsm-devel
+BuildRequires:	compface-devel
+Requires:	common-licenses
+Requires:	aspell-dictionary
+Obsoletes:	%{name}-tools
+Provides:	%{name}-tools
 # Fix upgrade from mdk 2006:
 Obsoletes:          sylpheed-claws2
 Obsoletes:	    sylpheed-claws
-
 ## additinal feature which can be enabled at configure are jconv
-
 ## jconv
 ## A general purpose Japanese code conversion tool.
 ## BuildRequires: jconv
 ## Requires: jconv
+Buildroot:	%{_tmppath}/%{version_name}-%{release}-buildroot
+
 
 %description
 Claws-Mail is an e-mail client (and news reader) based on GTK+2, running
@@ -64,7 +58,7 @@ with another mailer based on MH format (like Mew). You can also utilize
 fetchmail or/and procmail, and external programs on receiving (like inc or
 imget).
 
-This is an improved version over the "bare" sylpheed package.  It has
+This is an improved version over the "bare" sylpheed package. It has
 some additional features, and also extends existing features.
 
 Addtitional features include:
@@ -87,169 +81,204 @@ Improved features include:
 
 For a complete listing of Features: http://www.claws-mail.org/features.php
 
-%package -n %name-devel
-Summary:    %{Summary}
-Group:   Development/Other
-Requires:  %{name} = 1:%{version}
-Requires:          openldap-devel
-Requires:          aspell-devel >= 0.50, aspell-dictionary
-Requires:          libgdk_pixbuf2.0-devel >= 2.6.4
-Requires:          pilot-link-devel
-Requires:          libltdl-devel
-Requires:          libetpan-devel >= 0.42
-Requires:          libgnomeprintui-devel
-Requires:          gpgme-devel > 0.4.5
-Obsoletes: sylpheed-claws2-devel
-Obsoletes: sylpheed-claws-devel
+%package -n %{name}-devel
+Summary:	Development files for %{name}
+Group:		Development/Other
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	openldap-devel
+Requires:	aspell-devel >= 0.50
+Requires:	aspell-dictionary
+Requires:	libgdk_pixbuf2.0-devel >= 2.6.4
+Requires:	pilot-link-devel
+Requires:	libltdl-devel
+Requires:	libetpan-devel >= 0.42
+Requires:	libgnomeprintui-devel
+Requires:	gpgme-devel > 0.4.5
+Obsoletes:	sylpheed-claws2-devel
+Obsoletes:	sylpheed-claws-devel
 
-%description -n %name-devel
-Pkg contains the header files needed for developing with sylpheed-claws.
-
-%package spamassassin-plugin
-Summary: Spamassassin-plugin for %{name}
-Group: %{Group}
-Requires: %{name} = 1:%{version}
-Requires: spamassassin-spamd
-Provides: sylpheed-claws2-spamassassin-plugin
-Obsoletes: sylpheed-claws2-spamassassin-plugin
-
-%description spamassassin-plugin
-This package uses the spamd SpamAssassin server to check for spam mail.
-- See README for configuration and set-up info.
-
-%package clamav-plugin
-Summary: Clamav plugin for %name
-Group: %Group
-Requires: %{name} = 1:%{version}
-Requires: clamav
-Provides: sylpheed-claws2-clamav-plugin
-Obsoletes: sylpheed-claws2-clamav-plugin
-
-%description clamav-plugin
-This plugin will scan incoming messages for viruses using
-Clam AntiVirus.
-- See README for configuration and set-up info.
-
-%package dillo_viewer-plugin
-Summary: Dillo-plugin for %{name}
-Group: %{Group}
-Requires: %{name} = 1:%{version}
-Requires: dillo
-Provides: sylpheed-claws2-dillo_viewer-plugin
-Obsoletes: sylpheed-claws2-dillo_viewer-plugin
-
-%description dillo_viewer-plugin
-This plugin uses the Dillo browser to view text/html MIME parts inside
-%name.
-
-%package trayicon-plugin
-Summary: Notafication icon for %name
-Group: %{Group}
-Requires: %{name} = 1:%{version}
-Provides: sylpheed-claws2-trayicon-plugin
-Obsoletes: sylpheed-claws2-trayicon-plugin
-
-%description trayicon-plugin
-This plugin puts a little icon into the system tray.
-System trays known to work are Gnome2 and KDE 3.
-- See README for additional info.
-
-%package pgpcore-plugin
-Summary: PGP core plugin for %name
-Group: %{Group}
-Requires: %{name} = 1:%{version}
-Provides: sylpheed-claws2-pgpcore-plugin
-Obsoletes: sylpheed-claws2-pgpcore-plugin
-
-%description pgpcore-plugin
-This plugin handles PGP core operations. It is used by other
-plugins, like the pgpmime plugin and pgpinline plugin.
-
-%package pgpmime-plugin
-Summary: PGP plgin for %name
-Group: %{Group}
-Requires: %{name} = 1:%{version}
-Requires: %{name}-pgpcore-plugin = 1:%{version}-%{release}
-Provides: sylpheed-claws2-pgpmime-plugin
-Obsoletes: sylpheed-claws2-pgpmime-plugin
-
-%description pgpmime-plugin
-This plugin verifies signatures and decrypts messages.
-
-%package pgpinline-plugin
-Summary: PGP (inline) plugin for %name
-Group: %{Group}
-Requires: %{name} = 1:%{version}
-Requires: %{name}-pgpcore-plugin = 1:%{version}
-Provides: sylpheed-claws2-pgpinline-plugin
-Obsoletes: sylpheed-claws2-pgpinline-plugin
-
-%description pgpinline-plugin
-This plugin enables signature verification of digitally
-signed messages, and decryption of encrypted messages.
+%description -n %{name}-devel
+Development files and headers for %{name}
 
 %package bogofilter-plugin
-Summary: Bogofilter plugin for %name
-Group: %{Group}
-BuildRequires: bogofilter
-Requires: %{name} = 1:%{version}
-Requires: bogofilter
-
+Summary:	Bogofilter plugin for %{name}
+Group:		%{Group}
+BuildRequires:	bogofilter
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	bogofilter
 
 %description bogofilter-plugin
-This plugin provides spam filtering and learning
+Enables the scanning of incoming mail received from a 
+POP, IMAP, or LOCAL account using Bogofilter. It can 
+optionally delete mail identified as spam or save it 
+to a designated folder. Bogofilter is a pure Bayesian 
+filter, therefore it has better speed performance 
+than SpamAssassin but might catch less spam.
+
+%package clamav-plugin
+Summary:	Clamav antivirus plugin for %{name}
+Group:		%{Group}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	clamav
+Provides:	sylpheed-claws2-clamav-plugin
+Obsoletes:	sylpheed-claws2-clamav-plugin
+
+%description clamav-plugin
+Enables the scanning of message attachments in mail 
+received from a POP, IMAP, or LOCAL account using 
+Clam AntiVirus. It can optionally delete the mail 
+or save it to a designated folder.
+
+See README for configuration and set-up info.
+
+%package dillo_viewer-plugin
+Summary:	Dillo HTML viewer plugin for %{name}
+Group:		%{Group}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	dillo
+Provides:	sylpheed-claws2-dillo_viewer-plugin
+Obsoletes:	sylpheed-claws2-dillo_viewer-plugin
+
+%description dillo_viewer-plugin
+This plugin uses the Dillo browser to view text/html
+MIME parts inside %{name}.
+
+%package pgpcore-plugin
+Summary:	PGP core plugin for %{name}
+Group:		%{Group}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Provides:	sylpheed-claws2-pgpcore-plugin
+Obsoletes:	sylpheed-claws2-pgpcore-plugin
+
+%description pgpcore-plugin
+Handles core PGP functions and is a dependency of both 
+the PGP/Inline and PGP/MIME plugins.
+
+%package pgpinline-plugin
+Summary:	PGP/Inline plugin for %{name}
+Group:		%{Group}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}-pgpcore-plugin = %{epoch}:%{version}-%{release}
+Provides:	sylpheed-claws2-pgpinline-plugin
+Obsoletes:	sylpheed-claws2-pgpinline-plugin
+
+%description pgpinline-plugin
+Handles PGP/Inline signed and/or encrypted mails.
+You can decrypt mails, verify signatures or sign 
+and encrypt your own mails.
+
+%package pgpmime-plugin
+Summary:	PGP/MIME plugin for %{name}
+Group:		%{Group}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}-pgpcore-plugin = %{epoch}:%{version}-%{release}
+Provides:	sylpheed-claws2-pgpmime-plugin
+Obsoletes:	sylpheed-claws2-pgpmime-plugin
+
+%description pgpmime-plugin
+Handles PGP/MIME signed and/or encrypted mails.
+You can decrypt mails, verify signatures or sign
+and encrypt your own mails.
+
+%package spamassassin-plugin
+Summary:	Spamassassin-plugin for %{name}
+Group:		%{Group}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	spamassassin-spamd
+Provides:	sylpheed-claws2-spamassassin-plugin
+Obsoletes:	sylpheed-claws2-spamassassin-plugin
+
+%description spamassassin-plugin
+Enables the scanning of incoming mail received from a 
+POP, IMAP, or LOCAL account using SpamAssassin
+
+See README for configuration and set-up info.
+
+%package trayicon-plugin
+Summary:	Notafication icon for %{name}
+Group:		%{Group}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Provides:	sylpheed-claws2-trayicon-plugin
+Obsoletes:	sylpheed-claws2-trayicon-plugin
+
+%description trayicon-plugin
+Places an icon in the system tray that indicates 
+whether you have any new mail. A tooltip also shows 
+the current new, unread and total number of messages, 
+and a contextual menu allows the most common operations.
+
+See README for additional info.
 
 %prep
 %setup -q
 
 %build
 
-%configure2_5x --enable-aspell --enable-jpilot --enable-openssl --enable-ldap \
-                         --enable-gpgme --enable-crash_dialog --enable-spamassassin-plugin \
-                         --enable-dillo_viewer-plugin --enable-mathml_viewer-plugin \
-                         --enable-trayicon-plugin  --enable-clamav-plugin --enable-bogofilter
+%configure2_5x \
+	--enable-aspell \
+	--enable-jpilot \
+	--enable-openssl \
+	--enable-ldap \
+	--enable-gpgme \
+	--enable-crash-dialog \
+	--enable-spamassassin-plugin \
+	--enable-dillo-viewer-plugin \
+	--enable-trayicon-plugin \
+	--enable-clamav-plugin \
+	--enable-bogofilter \
+	--enable-ipv6 \
+	--enable-compface \
+	--disable-rpath \
+	--disable-static
 
 %make
 
+%check
+make check
+
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall_std
 
 # multiarch
 %multiarch_includes %{buildroot}%{_includedir}/%{name}/config.h
 
 ##remove duplicate man#
-rm -rfd  $RPM_BUILD_ROOT/usr/share/man
+rm -rfd  %{buildroot}%{_mandir}
 ## remove unneeded file
 #rm -rf tools/Makefile*
 ## remove unneeded devel files
-rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/plugins/*.*a
+rm -f %{buildroot}%{_libdir}/%{name}/plugins/*.*a
 
-mkdir -p %{buildroot}{%{_miconsdir},%{_iconsdir},%{_liconsdir},%{_menudir}}
-convert %{name}.png -geometry 48x48 %{buildroot}%{_liconsdir}/%{iconname}
-convert %{name}.png -geometry 32x32 %{buildroot}%{_iconsdir}/%{iconname}
-convert %{name}.png -geometry 16x16 %{buildroot}%{_miconsdir}/%{iconname}
+mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48,64x64,128x128}/apps
+convert %{name}.png -geometry 16x16 %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{iconname}
+convert %{name}.png -geometry 32x32 %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{iconname}
+install -m644 %{name}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{iconname}
+install -m644 %{name}-64x64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{iconname}
+install -m644 %{name}-128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{iconname}
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/48x48/apps/
-install -m644 %{name}.desktop $RPM_BUILD_ROOT%{_datadir}/applications/
-install -m644 %{name}.png $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/48x48/apps/
+mkdir -p %{buildroot}%{_datadir}/applications/
+install -m644 %{name}.desktop %{buildroot}%{_datadir}/applications/
 
 cp -a ABOUT-NLS COPYING AUTHORS ChangeLog* NEWS README* INSTALL* TODO* RELEASE_NOTES tools %{buildroot}%{_docdir}/claws-mail/
 rm -f %{buildroot}%{_docdir}/claws-mail/tools/Makefile*
 
-desktop-file-install --vendor="" \
-	--remove-key="Info" --remove-key='Encoding' \
-	--dir $RPM_BUILD_ROOT%{_datadir}/applications \
-	$RPM_BUILD_ROOT%{_datadir}/applications/*
+desktop-file-install \
+	--remove-key="Info" \
+	--remove-key='Encoding' \
+	--remove-category="Network" \
+	--add-category="Office" \
+	--dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 %find_lang %{name}
 
 %post
 %{update_menus}
+%update_icon_cache hicolor
 
 %postun
 %{clean_menus}
+%clean_icon_cache hicolor
 
 %clean
 rm -rf %{buildroot}
@@ -261,22 +290,18 @@ rm -rf %{buildroot}
 %{_datadir}/applications/claws-mail.desktop
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/plugins
-%{_miconsdir}/%{iconname}
-%{_iconsdir}/%{iconname}
-%{_liconsdir}/%{iconname}
-%{_datadir}/icons/hicolor/48x48/apps/claws-mail.png
+%{_iconsdir}/hicolor/*/apps/*.png
 %{_docdir}/claws-mail
 
-%files -n %name-devel
+%files -n %{name}-devel
 %defattr(-,root,root)
 %{_includedir}/%{name}
 %{_libdir}/pkgconfig/claws-mail.pc
 %multiarch %{multiarch_includedir}/%{name}/config.h
 
-%files spamassassin-plugin
+%files bogofilter-plugin
 %defattr(-,root,root)
-%doc src/plugins/spamassassin/README
-%{_libdir}/%{name}/plugins/spamassassin*.so
+%{_libdir}/%{name}/plugins/bogofilter.so
 
 %files clamav-plugin
 %defattr(-,root,root)
@@ -288,27 +313,26 @@ rm -rf %{buildroot}
 %doc src/plugins/clamav/README
 %{_libdir}/%{name}/plugins/dillo*.so
 
-%files trayicon-plugin
-%defattr(-,root,root)
-%doc src/plugins/trayicon/README
-%{_libdir}/%{name}/plugins/trayicon.so
-
 %files pgpcore-plugin
 %defattr(-,root,root)
 %{_libdir}/%{name}/plugins/pgpcore.so
-
-%files pgpmime-plugin
-%defattr(-,root,root)
-%{_libdir}/%{name}/plugins/pgpmime.so
-%{_libdir}/%{name}/plugins/pgpmime.deps
 
 %files pgpinline-plugin
 %defattr(-,root,root)
 %{_libdir}/%{name}/plugins/pgpinline.so
 %{_libdir}/%{name}/plugins/pgpinline.deps
 
-%files bogofilter-plugin
+%files pgpmime-plugin
 %defattr(-,root,root)
-%{_libdir}/%{name}/plugins/bogofilter.so
+%{_libdir}/%{name}/plugins/pgpmime.so
+%{_libdir}/%{name}/plugins/pgpmime.deps
 
+%files spamassassin-plugin
+%defattr(-,root,root)
+%doc src/plugins/spamassassin/README
+%{_libdir}/%{name}/plugins/spamassassin*.so
 
+%files trayicon-plugin
+%defattr(-,root,root)
+%doc src/plugins/trayicon/README
+%{_libdir}/%{name}/plugins/trayicon.so
