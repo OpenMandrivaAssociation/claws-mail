@@ -1,6 +1,7 @@
-%define pre         %nil
-%define version_name    %{name}-%{version}
-%define iconname    %{name}.png
+%define pre %nil
+%define version_name %{name}-%{version}
+%define iconname %{name}.png
+%define Group Networking/Mail
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
@@ -8,7 +9,7 @@ Version:	3.0.2
 Release:	%mkrel 2
 Epoch:		1
 License:	GPLv3+
-Group:		Networking/Mail
+Group:		%{Group}
 URL:		http://www.claws-mail.org
 Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
 BuildRequires:	openldap-devel
@@ -267,7 +268,6 @@ desktop-file-install \
 	--remove-key="Info" \
 	--remove-key='Encoding' \
 	--remove-category="Network" \
-	--add-category="Office" \
 	--dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 %find_lang %{name}
