@@ -27,6 +27,7 @@ BuildRequires:	gpgme-devel > 0.4.5
 BuildRequires:	desktop-file-utils
 BuildRequires:	libsm-devel
 BuildRequires:	compface-devel
+Requires:	compface
 Requires:	common-licenses
 Requires:	aspell-dictionary
 Obsoletes:	%{name}-tools
