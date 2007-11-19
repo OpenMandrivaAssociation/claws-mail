@@ -91,7 +91,6 @@ Summary:	Development files for %{name}
 Group:		Development/Other
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:       gtk2-devel
-Requires:	libsm6-devel
 Requires:	openldap-devel
 Requires:	aspell-devel >= 0.50
 Requires:	aspell-dictionary
