@@ -5,8 +5,8 @@
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
-Version:	3.0.2
-Release:	%mkrel 2
+Version:	3.1.0
+Release:	%mkrel 1
 Epoch:		1
 License:	GPLv3+
 Group:		%{Group}
@@ -20,7 +20,9 @@ BuildRequires:	ImageMagick
 BuildRequires:	libltdl-devel
 BuildRequires:	multiarch-utils
 BuildRequires:	libetpan-devel >= 0.42
+%if %mdkversion < 200700
 BuildRequires:	libgnomeprintui-devel
+%endif
 BuildRequires:	spamassassin-spamd >= 3.0.0
 BuildRequires:	clamav-devel
 BuildRequires:	gpgme-devel > 0.4.5
@@ -94,7 +96,9 @@ Requires:	libgdk_pixbuf2.0-devel >= 2.6.4
 Requires:	pilot-link-devel
 Requires:	libltdl-devel
 Requires:	libetpan-devel >= 0.42
+%if %mdkversion < 200700
 Requires:	libgnomeprintui-devel
+%endif
 Requires:	gpgme-devel > 0.4.5
 Obsoletes:	sylpheed-claws2-devel
 Obsoletes:	sylpheed-claws-devel
