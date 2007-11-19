@@ -12,6 +12,7 @@ License:	GPLv3+
 Group:		%{Group}
 URL:		http://www.claws-mail.org
 Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
+BuildRequires:  libgtk+2.0_0-devel
 BuildRequires:	openldap-devel
 BuildRequires:	aspell-devel
 BuildRequires:	libgdk_pixbuf2.0-devel >= 2.6.4
@@ -89,6 +90,7 @@ For a complete listing of Features: http://www.claws-mail.org/features.php
 Summary:	Development files for %{name}
 Group:		Development/Other
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:       libgtk+2.0_0-devel
 Requires:	openldap-devel
 Requires:	aspell-devel >= 0.50
 Requires:	aspell-dictionary
