@@ -6,12 +6,13 @@
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
 Version:	3.1.0
-Release:	%mkrel 2
+Release:	%mkrel 3
 Epoch:		1
 License:	GPLv3+
 Group:		%{Group}
 URL:		http://www.claws-mail.org
 Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
+Patch0:		claws-mail-3.1.0-fix-desktop-file.patch
 BuildRequires:  gtk2-devel
 BuildRequires:	openldap-devel
 BuildRequires:	aspell-devel
@@ -27,7 +28,6 @@ BuildRequires:	libgnomeprintui-devel
 BuildRequires:	spamassassin-spamd >= 3.0.0
 BuildRequires:	clamav-devel
 BuildRequires:	gpgme-devel > 0.4.5
-BuildRequires:	desktop-file-utils
 BuildRequires:	libsm-devel
 BuildRequires:	compface-devel
 Requires:	compface
@@ -219,6 +219,7 @@ See README for additional info.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
 
@@ -270,12 +271,6 @@ install -m644 %{name}.desktop %{buildroot}%{_datadir}/applications/
 
 cp -a ABOUT-NLS COPYING AUTHORS ChangeLog* NEWS README* INSTALL* TODO* RELEASE_NOTES tools %{buildroot}%{_docdir}/claws-mail/
 rm -f %{buildroot}%{_docdir}/claws-mail/tools/Makefile*
-
-desktop-file-install \
-	--remove-key="Info" \
-	--remove-key='Encoding' \
-	--remove-category="Network" \
-	--dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 %find_lang %{name}
 
