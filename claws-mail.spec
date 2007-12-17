@@ -43,7 +43,6 @@ Obsoletes:	    sylpheed-claws
 ## A general purpose Japanese code conversion tool.
 ## BuildRequires: jconv
 ## Requires: jconv
-Buildroot:	%{_tmppath}/%{version_name}-%{release}-buildroot
 
 
 %description
