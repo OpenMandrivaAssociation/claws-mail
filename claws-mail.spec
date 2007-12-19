@@ -13,12 +13,12 @@ Group:		%{Group}
 URL:		http://www.claws-mail.org
 Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
 Patch0:		claws-mail-3.2.0-fix-desktop-file.patch
-BuildRequires:  gtk2-devel
+BuildRequires:	gtk2-devel
 BuildRequires:	openldap-devel
 BuildRequires:	aspell-devel
 BuildRequires:	libgdk_pixbuf2.0-devel >= 2.6.4
 BuildRequires:	pilot-link-devel
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 BuildRequires:	libltdl-devel
 BuildRequires:	multiarch-utils
 BuildRequires:	libetpan-devel >= 0.42
@@ -36,8 +36,8 @@ Requires:	aspell-dictionary
 Obsoletes:	%{name}-tools
 Provides:	%{name}-tools
 # Fix upgrade from mdk 2006:
-Obsoletes:          sylpheed-claws2
-Obsoletes:	    sylpheed-claws
+Obsoletes:	sylpheed-claws2
+Obsoletes:	sylpheed-claws
 ## additinal feature which can be enabled at configure are jconv
 ## jconv
 ## A general purpose Japanese code conversion tool.
@@ -85,11 +85,11 @@ Improved features include:
 
 For a complete listing of Features: http://www.claws-mail.org/features.php
 
-%package -n %{name}-devel
+%package devel
 Summary:	Development files for %{name}
 Group:		Development/Other
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:       gtk2-devel
+Requires:	gtk2-devel
 Requires:	openldap-devel
 Requires:	aspell-devel >= 0.50
 Requires:	aspell-dictionary
@@ -268,7 +268,7 @@ install -m644 %{name}-128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/
 mkdir -p %{buildroot}%{_datadir}/applications/
 install -m644 %{name}.desktop %{buildroot}%{_datadir}/applications/
 
-cp -a ABOUT-NLS COPYING AUTHORS ChangeLog* NEWS README* INSTALL* TODO* RELEASE_NOTES tools %{buildroot}%{_docdir}/claws-mail/
+cp -a ABOUT-NLS AUTHORS NEWS README* TODO* RELEASE_NOTES tools %{buildroot}%{_docdir}/claws-mail/
 rm -f %{buildroot}%{_docdir}/claws-mail/tools/Makefile*
 
 %find_lang %{name}
@@ -294,7 +294,7 @@ rm -rf %{buildroot}
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_docdir}/claws-mail
 
-%files -n %{name}-devel
+%files devel
 %defattr(-,root,root)
 %{_includedir}/%{name}
 %{_libdir}/pkgconfig/claws-mail.pc
