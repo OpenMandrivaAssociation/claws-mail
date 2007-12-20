@@ -29,6 +29,11 @@ BuildRequires:	clamav-devel
 BuildRequires:	gpgme-devel > 0.4.5
 BuildRequires:	libsm-devel
 %if %mdkversion > 200800
+BuildRequires: imagemagick
+%else
+BuildRequires: ImageMagick
+%endif
+%if %mdkversion > 200800
 BuildRequires:	compface-devel
 Requires:	compface
 %endif
