@@ -18,7 +18,6 @@ BuildRequires:	openldap-devel
 BuildRequires:	aspell-devel
 BuildRequires:	libgdk_pixbuf2.0-devel >= 2.6.4
 BuildRequires:	pilot-link-devel
-BuildRequires:	imagemagick
 BuildRequires:	libltdl-devel
 BuildRequires:	multiarch-utils
 BuildRequires:	libetpan-devel >= 0.42
@@ -29,8 +28,10 @@ BuildRequires:	spamassassin-spamd >= 3.0.0
 BuildRequires:	clamav-devel
 BuildRequires:	gpgme-devel > 0.4.5
 BuildRequires:	libsm-devel
+%if %mdkversion > 200800
 BuildRequires:	compface-devel
 Requires:	compface
+%endif
 Requires:	common-licenses
 Requires:	aspell-dictionary
 Obsoletes:	%{name}-tools
@@ -235,7 +236,9 @@ See README for additional info.
 	--enable-clamav-plugin \
 	--enable-bogofilter \
 	--enable-ipv6 \
+%if %mdkversion > 200800
 	--enable-compface \
+%endif
 	--disable-rpath \
 	--disable-static
 
