@@ -13,6 +13,7 @@ Group:		%{Group}
 URL:		http://www.claws-mail.org
 Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
 Patch0:		claws-mail-3.2.0-fix-desktop-file.patch
+Buildroot:	%{_tmppath}/%{version_name}-%{release}-buildroot
 BuildRequires:	gtk2-devel
 BuildRequires:	openldap-devel
 BuildRequires:	aspell-devel
