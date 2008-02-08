@@ -5,14 +5,14 @@
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
-Version:	3.2.0
+Version:	3.3.0
 Release:	%mkrel 2
 Epoch:		1
 License:	GPLv3+
 Group:		%{Group}
 URL:		http://www.claws-mail.org
 Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
-Patch0:		claws-mail-3.2.0-fix-desktop-file.patch
+Patch0:		claws-mail-3.3.0-fix-desktop-file.patch
 Buildroot:	%{_tmppath}/%{version_name}-%{release}-buildroot
 BuildRequires:	gtk2-devel
 BuildRequires:	openldap-devel
@@ -26,7 +26,6 @@ BuildRequires:	libetpan-devel >= 0.42
 BuildRequires:	libgnomeprintui-devel
 %endif
 BuildRequires:	spamassassin-spamd >= 3.0.0
-BuildRequires:	clamav-devel
 BuildRequires:	gpgme-devel > 0.4.5
 BuildRequires:	libsm-devel
 %if %mdkversion > 200800
@@ -130,22 +129,6 @@ to a designated folder. Bogofilter is a pure Bayesian
 filter, therefore it has better speed performance 
 than SpamAssassin but might catch less spam.
 
-%package clamav-plugin
-Summary:	Clamav antivirus plugin for %{name}
-Group:		%{Group}
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	clamav
-Provides:	sylpheed-claws2-clamav-plugin
-Obsoletes:	sylpheed-claws2-clamav-plugin
-
-%description clamav-plugin
-Enables the scanning of message attachments in mail 
-received from a POP, IMAP, or LOCAL account using 
-Clam AntiVirus. It can optionally delete the mail 
-or save it to a designated folder.
-
-See README for configuration and set-up info.
-
 %package dillo_viewer-plugin
 Summary:	Dillo HTML viewer plugin for %{name}
 Group:		%{Group}
@@ -240,7 +223,6 @@ See README for additional info.
 	--enable-spamassassin-plugin \
 	--enable-dillo-viewer-plugin \
 	--enable-trayicon-plugin \
-	--enable-clamav-plugin \
 	--enable-bogofilter \
 	--enable-ipv6 \
 %if %mdkversion > 200800
@@ -314,14 +296,9 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %{_libdir}/%{name}/plugins/bogofilter.so
 
-%files clamav-plugin
-%defattr(-,root,root)
-%doc src/plugins/clamav/README
-%{_libdir}/%{name}/plugins/clamav*.so
-
 %files dillo_viewer-plugin
 %defattr(-,root,root)
-%doc src/plugins/clamav/README
+%doc src/plugins/dillo_viewer/README
 %{_libdir}/%{name}/plugins/dillo*.so
 
 %files pgpcore-plugin
