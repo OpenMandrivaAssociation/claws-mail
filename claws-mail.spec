@@ -6,13 +6,26 @@
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
 Version:	3.3.1
-Release:	%mkrel 1
+Release:	%mkrel 2
 Epoch:		1
 License:	GPLv3+
 Group:		%{Group}
 URL:		http://www.claws-mail.org
 Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
 Patch0:		claws-mail-3.3.0-fix-desktop-file.patch
+Patch1:		101_3.3.1_crasher_bug_1534.patch
+Patch2:		102_3.3.1_bug_1533.patch
+Patch3:		103_3.3.1_crasher_bug_1515.patch
+Patch4:		104_3.3.1_crasher_possible_null_date.patch
+Patch5:		105_3.3.1_crasher_ubuntu_bug_204290.patch
+Patch6:		106_3.3.1_crasher_ab_crash_on_delete.patch
+Patch7:		107_3.3.1_crasher_redhat_bug_431735.patch
+Patch8:		201_3.3.1_annoyance_fix_taskbar_blink.patch
+Patch9:		202_3.3.1_annoyance_ubuntu_bug_189569.patch
+Patch10:	203_3.3.1_annoyance_reedit_filter_redirect.patch
+Patch11:	204_3.3.1_annoyance_remove_raw_printf.patch
+Patch12:	205_3.3.1_annoyance_strstrip_mime_type.patch
+Patch13:	206_3.3.1_annoyance_bug_1555.patch
 Buildroot:	%{_tmppath}/%{version_name}-%{release}-buildroot
 BuildRequires:	gtk2-devel
 BuildRequires:	openldap-devel
@@ -210,6 +223,19 @@ See README for additional info.
 %prep
 %setup -q
 %patch0 -p0
+%patch1 -p0
+%patch2 -p0
+%patch3 -p0
+%patch4 -p0
+%patch5 -p0
+%patch6 -p0
+%patch7 -p0
+%patch8 -p0
+%patch9 -p0
+%patch10 -p0
+%patch11 -p0
+%patch12 -p0
+%patch13 -p0
 
 %build
 
