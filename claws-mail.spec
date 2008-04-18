@@ -6,7 +6,7 @@
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
 Version:	3.4.0
-Release:	%mkrel 1
+Release:	%mkrel 2
 Epoch:		1
 License:	GPLv3+
 Group:		%{Group}
@@ -44,6 +44,8 @@ Provides:	%{name}-tools
 # Fix upgrade from mdk 2006:
 Obsoletes:	sylpheed-claws2
 Obsoletes:	sylpheed-claws
+#Clamav is dropped
+Obsoletes:	claws-mail-clamav-plugin
 ## additinal feature which can be enabled at configure are jconv
 ## jconv
 ## A general purpose Japanese code conversion tool.
