@@ -40,10 +40,10 @@ Requires:	compface
 %if %mdkversion > 200700
 BuildRequires:	libdbus-glib-devel
 %endif
-%if %mdkversion >= 200900
-BuildRequires:	libnm_util-devel
-BuildRequires:	libnm_glib-devel
-%endif
+#%if %mdkversion >= 200900
+#BuildRequires:	libnm_util-devel
+#BuildRequires:	libnm_glib-devel
+#%endif
 Requires:	common-licenses
 Requires:	aspell-dictionary
 Obsoletes:	%{name}-tools
