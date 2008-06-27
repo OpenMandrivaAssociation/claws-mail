@@ -6,7 +6,7 @@
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
 Version:	3.5.0
-Release:	%mkrel 2
+Release:	%mkrel 3
 Epoch:		1
 License:	GPLv3+
 Group:		%{Group}
@@ -38,9 +38,11 @@ BuildRequires:	compface-devel
 Requires:	compface
 %endif
 %if %mdkversion > 200700
-#NM support disabled because NM packages are broken
-#BuildRequires:	libnetworkmanager-glib-devel
-Requires:	libdbus-glib-devel
+BuildRequires:	libdbus-glib-devel
+%endif
+%if %mdkversion >= 200900
+BuildRequires:	libnm_util-devel
+BuildRequires:	libnm_glib-devel
 %endif
 Requires:	common-licenses
 Requires:	aspell-dictionary
