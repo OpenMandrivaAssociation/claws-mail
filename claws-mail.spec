@@ -6,14 +6,13 @@
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
 Version:	3.5.0
-Release:	%mkrel 3
+Release:	%mkrel 4
 Epoch:		1
 License:	GPLv3+
 Group:		%{Group}
 URL:		http://www.claws-mail.org
 Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
 Patch0:		claws-mail-3.3.0-fix-desktop-file.patch
-Buildroot:	%{_tmppath}/%{version_name}-%{release}-buildroot
 BuildRequires:	gtk2-devel
 BuildRequires:	openldap-devel
 BuildRequires:	aspell-devel
@@ -22,6 +21,11 @@ BuildRequires:	pilot-link-devel
 BuildRequires:	libltdl-devel
 BuildRequires:	multiarch-utils
 BuildRequires:	libetpan-devel >= 0.42
+BuildRequires:	flex
+BuildRequires:	bison
+BuildRequires:	startup-notification-devel
+BuildRequires:	gnutls-devel
+BuildRequires:	valgrind
 %if %mdkversion < 200700
 BuildRequires:	libgnomeprintui-devel
 %endif
@@ -29,9 +33,9 @@ BuildRequires:	spamassassin-spamd >= 3.0.0
 BuildRequires:	gpgme-devel > 0.4.5
 BuildRequires:	libsm-devel
 %if %mdkversion > 200800
-BuildRequires: imagemagick
+BuildRequires:	imagemagick
 %else
-BuildRequires: ImageMagick
+BuildRequires:	ImageMagick
 %endif
 %if %mdkversion > 200800
 BuildRequires:	compface-devel
@@ -53,6 +57,8 @@ Obsoletes:	sylpheed-claws2
 Obsoletes:	sylpheed-claws
 #Clamav is dropped
 Obsoletes:	claws-mail-clamav-plugin
+#Pdf Viever is gone
+Obsoletes:	claws-mail-pdf_viewer-plugin
 ## additinal feature which can be enabled at configure are jconv
 ## jconv
 ## A general purpose Japanese code conversion tool.
@@ -121,7 +127,7 @@ Obsoletes:	sylpheed-claws2-devel
 Obsoletes:	sylpheed-claws-devel
 
 %description -n %{name}-devel
-Development files and headers for %{name}
+Development files and headers for %{name}.
 
 %package bogofilter-plugin
 Summary:	Bogofilter plugin for %{name}
@@ -237,6 +243,8 @@ See README for additional info.
 %if %mdkversion > 200800
 	--enable-compface \
 %endif
+	--enable-gnutls \
+	--disable-networkmanager-support \
 	--disable-rpath \
 	--disable-static
 
