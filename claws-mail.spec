@@ -232,7 +232,7 @@ See README for additional info.
 %configure2_5x \
 	--enable-aspell \
 	--enable-jpilot \
-	--enable-openssl \
+	--disable-openssl \
 	--enable-ldap \
 	--enable-gpgme \
 	--enable-crash-dialog \
