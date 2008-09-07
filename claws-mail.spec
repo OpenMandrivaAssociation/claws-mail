@@ -13,6 +13,7 @@ Group:		%{Group}
 URL:		http://www.claws-mail.org
 Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
 Patch0:		claws-mail-3.3.0-fix-desktop-file.patch
+Patch1:		claws-mail-3.5.0-gnutls-rootcerts-path.patch
 BuildRequires:	gtk2-devel
 BuildRequires:	openldap-devel
 BuildRequires:	aspell-devel
@@ -43,6 +44,9 @@ Requires:	compface
 %endif
 %if %mdkversion > 200700
 BuildRequires:	libdbus-glib-devel
+%endif
+%if %mdkversion > 2008100
+Requires:	rootcerts
 %endif
 #%if %mdkversion >= 200900
 #BuildRequires:	libnm_util-devel
@@ -226,9 +230,9 @@ See README for additional info.
 %prep
 %setup -q
 %patch0 -p0
+%patch1 -p1
 
 %build
-
 %configure2_5x \
 	--enable-aspell \
 	--enable-jpilot \
