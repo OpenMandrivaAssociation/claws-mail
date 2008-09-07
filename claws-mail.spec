@@ -12,8 +12,9 @@ License:	GPLv3+
 Group:		%{Group}
 URL:		http://www.claws-mail.org
 Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
-Patch0:		claws-mail-3.3.0-fix-desktop-file.patch
-Patch1:		claws-mail-3.5.0-gnutls-rootcerts-path.patch
+Patch0:		%{name}-3.3.0-fix-desktop-file.patch
+Patch1:		%{name}-3.5.0-gnutls-rootcerts-path.patch
+Patch2:		%{name}-3.5.0-gtk+2.13.x.patch
 BuildRequires:	gtk2-devel
 BuildRequires:	openldap-devel
 BuildRequires:	aspell-devel
@@ -231,6 +232,7 @@ See README for additional info.
 %setup -q
 %patch0 -p0
 %patch1 -p1
+%patch2 -p1
 
 %build
 %configure2_5x \
