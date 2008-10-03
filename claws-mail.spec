@@ -5,16 +5,14 @@
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
-Version:	3.5.0
-Release:	%mkrel 6
+Version:	3.6.0
+Release:	%mkrel 1
 Epoch:		1
 License:	GPLv3+
 Group:		%{Group}
 URL:		http://www.claws-mail.org
 Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-3.3.0-fix-desktop-file.patch
-Patch1:		%{name}-3.5.0-gnutls-rootcerts-path.patch
-Patch2:		%{name}-3.5.0-gtk+2.13.x.patch
 BuildRequires:	gtk2-devel
 BuildRequires:	openldap-devel
 BuildRequires:	aspell-devel
@@ -150,6 +148,15 @@ to a designated folder. Bogofilter is a pure Bayesian
 filter, therefore it has better speed performance 
 than SpamAssassin but might catch less spam.
 
+%package smime-plugin
+Summary:	S/Mime plugin for %{name}
+Group:		%{Group}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description smime-plugin
+This plugin allows to use S/Mime signatures and encryptions
+in Claws Mail
+
 %package dillo_viewer-plugin
 Summary:	Dillo HTML viewer plugin for %{name}
 Group:		%{Group}
@@ -231,8 +238,6 @@ See README for additional info.
 %prep
 %setup -q
 %patch0 -p0
-%patch1 -p1
-%patch2 -p1
 
 %build
 %configure2_5x \
@@ -323,6 +328,11 @@ rm -rf %{buildroot}
 %files bogofilter-plugin
 %defattr(-,root,root)
 %{_libdir}/%{name}/plugins/bogofilter.so
+
+%files smime-plugin
+%defattr(-,root,root)
+%{_libdir}/%{name}/plugins/smime.so
+%{_libdir}/%{name}/plugins/smime.deps
 
 %files dillo_viewer-plugin
 %defattr(-,root,root)
