@@ -5,7 +5,7 @@
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
-Version:	3.6.0
+Version:	3.6.1
 Release:	%mkrel 1
 Epoch:		1
 License:	GPLv3+
@@ -15,7 +15,7 @@ Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.
 Patch0:		%{name}-3.3.0-fix-desktop-file.patch
 BuildRequires:	gtk2-devel
 BuildRequires:	openldap-devel
-BuildRequires:	aspell-devel
+BuildRequires:	enchant-devel
 BuildRequires:	libgdk_pixbuf2.0-devel >= 2.6.4
 BuildRequires:	pilot-link-devel
 BuildRequires:	libltdl-devel
@@ -241,7 +241,7 @@ See README for additional info.
 
 %build
 %configure2_5x \
-	--enable-aspell \
+	--enable-enchant \
 	--enable-jpilot \
 	--disable-openssl \
 	--enable-ldap \
