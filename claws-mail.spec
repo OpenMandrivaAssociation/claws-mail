@@ -116,7 +116,7 @@ Group:		Development/Other
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gtk2-devel
 Requires:	openldap-devel
-Requires:	aspell-devel >= 0.50
+Requires:	enchant-devel
 Requires:	aspell-dictionary
 Requires:	libgdk_pixbuf2.0-devel >= 2.6.4
 Requires:	pilot-link-devel
