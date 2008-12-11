@@ -35,7 +35,7 @@ BuildRequires:	libsm-devel
 %if %mdkversion > 200800
 BuildRequires:	imagemagick
 %else
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 %endif
 %if %mdkversion > 200800
 BuildRequires:	compface-devel
