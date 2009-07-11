@@ -240,6 +240,7 @@ See README for additional info.
 %patch0 -p0
 
 %build
+%define _disable_ld_no_undefined 1
 %configure2_5x \
 	--enable-enchant \
 	--enable-jpilot \
