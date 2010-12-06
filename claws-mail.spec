@@ -5,13 +5,13 @@
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
-Version:	3.7.6
+Version:	3.7.8
 Release:	%mkrel 1
 Epoch:		1
 License:	GPLv3+
 Group:		%{Group}
 URL:		http://www.claws-mail.org
-Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
+Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.gz
 Patch0:		%{name}-3.3.0-fix-desktop-file.patch
 BuildRequires:	gtk2-devel
 BuildRequires:	libtool
@@ -277,7 +277,7 @@ export LIBTOOL=%{_bindir}/false
 %multiarch_includes %{buildroot}%{_includedir}/%{name}/config.h
 
 ##remove duplicate man#
-rm -rfd  %{buildroot}%{_mandir}
+rm -rf  %{buildroot}%{_mandir}
 ## remove unneeded file
 #rm -rf tools/Makefile*
 ## remove unneeded devel files
