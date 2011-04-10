@@ -12,9 +12,7 @@ License:	GPLv3+
 Group:		%{Group}
 URL:		http://www.claws-mail.org
 Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
-Patch0:		%{name}-3.3.0-fix-desktop-file.patch
 BuildRequires:	gtk2-devel
-BuildRequires:	libtool
 BuildRequires:	openldap-devel
 BuildRequires:	enchant-devel
 BuildRequires:	libgdk_pixbuf2.0-devel >= 2.6.4
@@ -238,7 +236,6 @@ See README for additional info.
 
 %prep
 %setup -q
-%patch0 -p0
 
 %build
 %define _disable_ld_no_undefined 1
@@ -263,14 +260,13 @@ See README for additional info.
 	--disable-rpath \
 	--disable-static
 
-%make LIBTOOL=%{_bindir}/libtool
+%make
 
 %check
 make check
 
 %install
 rm -rf %{buildroot}
-export LIBTOOL=%{_bindir}/false
 %makeinstall_std
 
 # multiarch
