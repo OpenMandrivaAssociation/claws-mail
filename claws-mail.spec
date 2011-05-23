@@ -325,7 +325,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %{_includedir}/%{name}
 %{_libdir}/pkgconfig/claws-mail.pc
-%multiarch %{multiarch_includedir}/%{name}/config.h
+%{multiarch_includedir}/%{name}/config.h
 
 %files bogofilter-plugin
 %defattr(-,root,root)
