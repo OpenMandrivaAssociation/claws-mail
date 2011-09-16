@@ -6,7 +6,7 @@
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
 Version:	3.7.10
-Release:	%mkrel 1
+Release:	2
 Epoch:		1
 License:	GPLv3+
 Group:		%{Group}
@@ -25,31 +25,19 @@ BuildRequires:	bison
 BuildRequires:	startup-notification-devel
 BuildRequires:	gnutls-devel
 BuildRequires:	valgrind
-%if %mdkversion < 200700
-BuildRequires:	libgnomeprintui-devel
-%endif
 BuildRequires:	spamassassin-spamd >= 3.0.0
 BuildRequires:	gpgme-devel > 0.4.5
 BuildRequires:	libsm-devel
-%if %mdkversion > 200800
-BuildRequires:	imagemagick
-%else
 BuildRequires:	imagemagick
 %endif
 %if %mdkversion > 200800
 BuildRequires:	compface-devel
 Requires:	compface
 %endif
-%if %mdkversion > 200700
 BuildRequires:	libdbus-glib-devel
-%endif
 %if %mdkversion > 2008100
 Requires:	rootcerts
 %endif
-#%if %mdkversion >= 200900
-#BuildRequires:	libnm_util-devel
-#BuildRequires:	libnm_glib-devel
-#%endif
 Requires:	common-licenses
 Requires:	aspell-dictionary
 Obsoletes:	%{name}-tools
@@ -113,19 +101,16 @@ For a complete listing of Features: http://www.claws-mail.org/features.php
 Summary:	Development files for %{name}
 Group:		Development/Other
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	gtk2-devel
-Requires:	openldap-devel
-Requires:	enchant-devel
+#Requires:	gtk2-devel
+#Requires:	openldap-devel
+#Requires:	enchant-devel
 Requires:	aspell-dictionary
-Requires:	libgdk_pixbuf2.0-devel >= 2.6.4
-Requires:	pilot-link-devel
-Requires:	libltdl-devel
-Requires:	libetpan-devel >= 0.42
-%if %mdkversion < 200700
-Requires:	libgnomeprintui-devel
-%endif
-Requires:	gpgme-devel > 0.4.5
-Requires:	gnutls-devel
+#Requires:	libgdk_pixbuf2.0-devel >= 2.6.4
+#Requires:	pilot-link-devel
+#Requires:	libltdl-devel
+#Requires:	libetpan-devel >= 0.42
+#Requires:	gpgme-devel > 0.4.5
+#Requires:	gnutls-devel
 Obsoletes:	sylpheed-claws2-devel
 Obsoletes:	sylpheed-claws-devel
 
