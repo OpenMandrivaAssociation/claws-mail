@@ -29,7 +29,6 @@ BuildRequires:	spamassassin-spamd >= 3.0.0
 BuildRequires:	gpgme-devel > 0.4.5
 BuildRequires:	libsm-devel
 BuildRequires:	imagemagick
-%endif
 %if %mdkversion > 200800
 BuildRequires:	compface-devel
 Requires:	compface
