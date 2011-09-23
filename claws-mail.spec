@@ -146,7 +146,7 @@ Group:		%{Group}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	dillo
 Provides:	sylpheed-claws2-dillo_viewer-plugin
-Obsoletes:	sylpheed-claws2-dillo_viewer-plugin
+Obsoletes:	sylpheed-claws2-dillo_viewer-plugin < %{epoch}:%{version}-%{release}
 
 %description dillo_viewer-plugin
 This plugin uses the Dillo browser to view text/html
@@ -157,7 +157,7 @@ Summary:	PGP core plugin for %{name}
 Group:		%{Group}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Provides:	sylpheed-claws2-pgpcore-plugin
-Obsoletes:	sylpheed-claws2-pgpcore-plugin
+Obsoletes:	sylpheed-claws2-pgpcore-plugin < %{epoch}:%{version}-%{release}
 
 %description pgpcore-plugin
 Handles core PGP functions and is a dependency of both 
@@ -169,7 +169,7 @@ Group:		%{Group}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-pgpcore-plugin = %{epoch}:%{version}-%{release}
 Provides:	sylpheed-claws2-pgpinline-plugin
-Obsoletes:	sylpheed-claws2-pgpinline-plugin
+Obsoletes:	sylpheed-claws2-pgpinline-plugin < %{epoch}:%{version}-%{release}
 
 %description pgpinline-plugin
 Handles PGP/Inline signed and/or encrypted mails.
@@ -182,7 +182,7 @@ Group:		%{Group}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	%{name}-pgpcore-plugin = %{epoch}:%{version}-%{release}
 Provides:	sylpheed-claws2-pgpmime-plugin
-Obsoletes:	sylpheed-claws2-pgpmime-plugin
+Obsoletes:	sylpheed-claws2-pgpmime-plugin < %{epoch}:%{version}-%{release}
 
 %description pgpmime-plugin
 Handles PGP/MIME signed and/or encrypted mails.
@@ -195,7 +195,7 @@ Group:		%{Group}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	spamassassin-spamd
 Provides:	sylpheed-claws2-spamassassin-plugin
-Obsoletes:	sylpheed-claws2-spamassassin-plugin
+Obsoletes:	sylpheed-claws2-spamassassin-plugin < %{epoch}:%{version}-%{release}
 
 %description spamassassin-plugin
 Enables the scanning of incoming mail received from a 
@@ -208,7 +208,7 @@ Summary:	Notafication icon for %{name}
 Group:		%{Group}
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Provides:	sylpheed-claws2-trayicon-plugin
-Obsoletes:	sylpheed-claws2-trayicon-plugin
+Obsoletes:	sylpheed-claws2-trayicon-plugin < %{epoch}:%{version}-%{release}
 
 %description trayicon-plugin
 Places an icon in the system tray that indicates 
