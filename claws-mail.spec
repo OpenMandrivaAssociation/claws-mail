@@ -2,6 +2,7 @@
 %define version_name %{name}-%{version}
 %define iconname %{name}.png
 %define Group Networking/Mail
+%define _disable_ld_no_undefined 1
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
@@ -29,6 +30,8 @@ BuildRequires:	spamassassin-spamd >= 3.0.0
 BuildRequires:	gpgme-devel > 0.4.5
 BuildRequires:	libsm-devel
 BuildRequires:	imagemagick
+BuildRequires:	glib2-devel
+BuildRequires:	libtool
 %if %mdkversion > 200800
 BuildRequires:	compface-devel
 Requires:	compface
@@ -39,8 +42,9 @@ Requires:	rootcerts
 %endif
 Requires:	common-licenses
 Requires:	aspell-dictionary
-Obsoletes:	%{name}-tools
+Obsoletes:	%{name}-tools < %{epoch}:%{version}-%{release}
 Provides:	%{name}-tools
+Obsoletes:	%{name}-spamassassin-plugin < %{epoch}:%{version}-%{release}
 # Fix upgrade from mdk 2006:
 Obsoletes:	sylpheed-claws2
 Obsoletes:	sylpheed-claws
@@ -100,16 +104,7 @@ For a complete listing of Features: http://www.claws-mail.org/features.php
 Summary:	Development files for %{name}
 Group:		Development/Other
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-#Requires:	gtk2-devel
-#Requires:	openldap-devel
-#Requires:	enchant-devel
 Requires:	aspell-dictionary
-#Requires:	libgdk_pixbuf2.0-devel >= 2.6.4
-#Requires:	pilot-link-devel
-#Requires:	libltdl-devel
-#Requires:	libetpan-devel >= 0.42
-#Requires:	gpgme-devel > 0.4.5
-#Requires:	gnutls-devel
 Obsoletes:	sylpheed-claws2-devel
 Obsoletes:	sylpheed-claws-devel
 
@@ -222,19 +217,14 @@ See README for additional info.
 %setup -q
 
 %build
-%define _disable_ld_no_undefined 1
-
 %configure2_5x \
 	--enable-enchant \
 	--enable-jpilot \
-	--disable-openssl \
 	--enable-ldap \
-	--enable-gpgme \
 	--enable-crash-dialog \
 	--enable-spamassassin-plugin \
 	--enable-dillo-viewer-plugin \
 	--enable-trayicon-plugin \
-	--enable-bogofilter \
 	--enable-ipv6 \
 %if %mdkversion > 200800
 	--enable-compface \
@@ -244,7 +234,7 @@ See README for additional info.
 	--disable-rpath \
 	--disable-static
 
-%make
+%make LIBTOOL=%{_bindir}/libtool
 
 %check
 make check
