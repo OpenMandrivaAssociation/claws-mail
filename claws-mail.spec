@@ -6,14 +6,13 @@
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
-Version:	3.7.10
-Release:	3
+Version:	3.8.0
+Release:	1
 Epoch:		1
 License:	GPLv3+
 Group:		%{Group}
 URL:		http://www.claws-mail.org
 Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
-Patch0:		claws-mail-3.7.10-glib.patch
 BuildRequires:	gtk2-devel
 BuildRequires:	openldap-devel
 BuildRequires:	enchant-devel
@@ -33,14 +32,10 @@ BuildRequires:	libsm-devel
 BuildRequires:	imagemagick
 BuildRequires:	glib2-devel
 BuildRequires:	libtool
-%if %mdkversion > 200800
 BuildRequires:	compface-devel
 Requires:	compface
-%endif
 BuildRequires:	libdbus-glib-devel
-%if %mdkversion > 2008100
 Requires:	rootcerts
-%endif
 Requires:	common-licenses
 Requires:	aspell-dictionary
 Obsoletes:	%{name}-tools < %{epoch}:%{version}-%{release}
@@ -216,7 +211,6 @@ See README for additional info.
 
 %prep
 %setup -q
-%patch0 -p1 -b .glib
 
 %build
 %configure2_5x \
@@ -250,8 +244,6 @@ rm -rf %{buildroot}
 
 ##remove duplicate man#
 rm -rf  %{buildroot}%{_mandir}
-## remove unneeded file
-#rm -rf tools/Makefile*
 ## remove unneeded devel files
 rm -f %{buildroot}%{_libdir}/%{name}/plugins/*.*a
 
@@ -269,18 +261,6 @@ cp -a ABOUT-NLS AUTHORS NEWS README* TODO* RELEASE_NOTES tools %{buildroot}%{_do
 rm -f %{buildroot}%{_docdir}/claws-mail/tools/Makefile*
 
 %find_lang %{name}
-
-%if %mdkversion < 200900
-%post
-%{update_menus}
-%update_icon_cache hicolor
-%endif
-
-%if %mdkversion < 200900
-%postun
-%{clean_menus}
-%clean_icon_cache hicolor
-%endif
 
 %clean
 rm -rf %{buildroot}
