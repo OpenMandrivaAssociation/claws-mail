@@ -6,7 +6,7 @@
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
-Version:	3.8.0
+Version:	3.8.1
 Release:	1
 Epoch:		1
 License:	GPLv3+
@@ -53,8 +53,6 @@ Obsoletes:	claws-mail-pdf_viewer-plugin
 ## A general purpose Japanese code conversion tool.
 ## BuildRequires: jconv
 ## Requires: jconv
-Buildroot:	%{_tmppath}/%{version_name}-%{release}-buildroot
-
 
 %description
 Claws-Mail is an e-mail client (and news reader) based on GTK+2, running
@@ -236,7 +234,6 @@ See README for additional info.
 make check
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 # multiarch
@@ -261,9 +258,6 @@ cp -a ABOUT-NLS AUTHORS NEWS README* TODO* RELEASE_NOTES tools %{buildroot}%{_do
 rm -f %{buildroot}%{_docdir}/claws-mail/tools/Makefile*
 
 %find_lang %{name}
-
-%clean
-rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root)
