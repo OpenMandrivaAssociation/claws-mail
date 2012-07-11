@@ -1,3 +1,4 @@
+%define _disable_ld_no_undefined 1
 %define version_name %{name}-%{version}
 %define iconname %{name}.png
 %define Group Networking/Mail
