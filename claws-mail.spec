@@ -18,7 +18,7 @@ BuildRequires:	openldap-devel
 BuildRequires:	enchant-devel
 BuildRequires:	libgdk_pixbuf2.0-devel >= 2.6.4
 BuildRequires:	pilot-link-devel
-BuildRequires:	libltdl-devel
+#BuildRequires:	libltdl-devel
 BuildRequires:	multiarch-utils
 BuildRequires:	libetpan-devel >= 0.42
 BuildRequires:	flex
@@ -224,7 +224,7 @@ See README for additional info.
 	--enable-compface \
 %endif
 	--enable-gnutls \
-	--disable-networkmanager-support \
+	--enable-networkmanager-support \
 	--disable-rpath \
 	--disable-static
 
