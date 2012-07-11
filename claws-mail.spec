@@ -1,8 +1,6 @@
-%define pre %nil
 %define version_name %{name}-%{version}
 %define iconname %{name}.png
 %define Group Networking/Mail
-%define _disable_ld_no_undefined 1
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
@@ -13,28 +11,35 @@ License:	GPLv3+
 Group:		%{Group}
 URL:		http://www.claws-mail.org
 Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
-BuildRequires:	gtk2-devel
+BuildRequires:	pkgconfig(cairo)
+BuildRequires:	pkgconfig(dbus-1) >= 0.60
+BuildRequires:	pkgconfig(dbus-glib-1) >= 0.60
+BuildRequires:	pkgconfig(enchant) >= 1.0.0
+BuildRequires:	pkgconfig(glib-2.0) >= 2.6
+BuildRequires:	pkgconfig(gmodule-2.0) >= 2.6
+BuildRequires:	pkgconfig(gnutls) >= 2.2
+BuildRequires:	pkgconfig(gobject-2.0) >= 2.6
+BuildRequires:	pkgconfig(gthread-2.0) >= 2.6
+BuildRequires:	pkgconfig(gtk+-2.0) >= 2.16
+BuildRequires:	pkgconfig(libgnome-2.0) >= 2.0
+BuildRequires:	pkgconfig(libstartup-notification-1.0) >= 0.5
+BuildRequires:	pkgconfig(NetworkManager) >= 0.6.2
+BuildRequires:	docbook-utils
+BuildRequires:	libsm-devel
 BuildRequires:	openldap-devel
-BuildRequires:	enchant-devel
-BuildRequires:	libgdk_pixbuf2.0-devel >= 2.6.4
 BuildRequires:	pilot-link-devel
-#BuildRequires:	libltdl-devel
 BuildRequires:	multiarch-utils
 BuildRequires:	libetpan-devel >= 0.42
 BuildRequires:	flex
 BuildRequires:	bison
-BuildRequires:	startup-notification-devel
-BuildRequires:	gnutls-devel
-BuildRequires:	valgrind
+BuildRequires:	valgrind-devel
 BuildRequires:	spamassassin-spamd >= 3.0.0
+BuildRequires:	libgcrypt-devel
 BuildRequires:	gpgme-devel > 0.4.5
-BuildRequires:	libsm-devel
 BuildRequires:	imagemagick
-BuildRequires:	glib2-devel
-BuildRequires:	libtool
 BuildRequires:	compface-devel
+
 Requires:	compface
-BuildRequires:	libdbus-glib-devel
 Requires:	rootcerts
 Requires:	common-licenses
 Requires:	aspell-dictionary
@@ -220,15 +225,13 @@ See README for additional info.
 	--enable-dillo-viewer-plugin \
 	--enable-trayicon-plugin \
 	--enable-ipv6 \
-%if %mdkversion > 200800
 	--enable-compface \
-%endif
 	--enable-gnutls \
 	--enable-networkmanager-support \
 	--disable-rpath \
 	--disable-static
 
-%make LIBTOOL=%{_bindir}/libtool
+%make
 
 %check
 make check
@@ -260,7 +263,6 @@ rm -f %{buildroot}%{_docdir}/claws-mail/tools/Makefile*
 %find_lang %{name}
 
 %files -f %{name}.lang
-%defattr(-,root,root)
 %{_bindir}/%{name}
 %{_bindir}/sylpheed-claws
 %{_datadir}/applications/claws-mail.desktop
@@ -270,45 +272,36 @@ rm -f %{buildroot}%{_docdir}/claws-mail/tools/Makefile*
 %{_docdir}/claws-mail
 
 %files devel
-%defattr(-,root,root)
 %{_includedir}/%{name}
 %{_libdir}/pkgconfig/claws-mail.pc
 %{multiarch_includedir}/%{name}/config.h
 
 %files bogofilter-plugin
-%defattr(-,root,root)
 %{_libdir}/%{name}/plugins/bogofilter.so
 
 %files smime-plugin
-%defattr(-,root,root)
 %{_libdir}/%{name}/plugins/smime.so
 %{_libdir}/%{name}/plugins/smime.deps
 
 %files dillo_viewer-plugin
-%defattr(-,root,root)
 %doc src/plugins/dillo_viewer/README
 %{_libdir}/%{name}/plugins/dillo*.so
 
 %files pgpcore-plugin
-%defattr(-,root,root)
 %{_libdir}/%{name}/plugins/pgpcore.so
 
 %files pgpinline-plugin
-%defattr(-,root,root)
 %{_libdir}/%{name}/plugins/pgpinline.so
 %{_libdir}/%{name}/plugins/pgpinline.deps
 
 %files pgpmime-plugin
-%defattr(-,root,root)
 %{_libdir}/%{name}/plugins/pgpmime.so
 %{_libdir}/%{name}/plugins/pgpmime.deps
 
 %files spamassassin-plugin
-%defattr(-,root,root)
 %doc src/plugins/spamassassin/README
 %{_libdir}/%{name}/plugins/spamassassin*.so
 
 %files trayicon-plugin
-%defattr(-,root,root)
 %doc src/plugins/trayicon/README
 %{_libdir}/%{name}/plugins/trayicon.so
