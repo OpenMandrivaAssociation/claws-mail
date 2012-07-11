@@ -232,7 +232,7 @@ See README for additional info.
 	--disable-rpath \
 	--disable-static
 
-%make
+%make LIBTOOL=%{_bindir}/libtool
 
 %check
 make check
