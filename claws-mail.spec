@@ -1,4 +1,9 @@
 %define _disable_ld_no_undefined 1
+
+# There are perl scripts in docs/tools and we don't want to install perl
+# modules required by these scripts
+%define __noautoreq 'perl(.*)'
+
 %define version_name %{name}-%{version}
 %define iconname %{name}.png
 %define Group Networking/Mail
@@ -6,7 +11,7 @@
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
 Version:	3.8.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPLv3+
 Group:		%{Group}
@@ -44,16 +49,16 @@ Requires:	compface
 Requires:	rootcerts
 Requires:	common-licenses
 Requires:	aspell-dictionary
-Obsoletes:	%{name}-tools < %{epoch}:%{version}-%{release}
+Obsoletes:	%{name}-tools < %{EVRD}
 Provides:	%{name}-tools
-Obsoletes:	%{name}-spamassassin-plugin < %{epoch}:%{version}-%{release}
+Obsoletes:	%{name}-spamassassin-plugin < %{EVRD}
 # Fix upgrade from mdk 2006:
 Obsoletes:	sylpheed-claws2
 Obsoletes:	sylpheed-claws
 #Clamav is dropped
-Obsoletes:	claws-mail-clamav-plugin
+Obsoletes:	claws-mail-clamav-plugin < %{EVRD}
 #Pdf Viever is gone
-Obsoletes:	claws-mail-pdf_viewer-plugin
+Obsoletes:	claws-mail-pdf_viewer-plugin < %{EVRD}
 ## additinal feature which can be enabled at configure are jconv
 ## jconv
 ## A general purpose Japanese code conversion tool.
