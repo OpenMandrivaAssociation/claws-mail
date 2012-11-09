@@ -1,0 +1,16 @@
+# Description: feature patch to mark as read mails moved to trash
+# Author: Ricardo Mones <mones@debian.org>
+diff -ur claws-mail-3.7.6.orig//src/summaryview.c claws-mail-3.7.6//src/summaryview.c
+--- claws-mail-3.7.6.orig//src/summaryview.c	2010-02-19 09:10:55.000000000 +0100
++++ claws-mail-3.7.6//src/summaryview.c	2010-05-05 16:14:14.000000000 +0200
+@@ -4449,6 +4449,10 @@
+ 		summary_msginfo_unset_flags(msginfo, MSG_DELETED, MSG_MOVE);
+ 	}
+ 	if (!prefs_common.immediate_exec) {
++		if (to_folder->stype == F_TRASH 
++			&& MSG_IS_UNREAD(msginfo->flags)) {
++			summary_mark_row_as_read(summaryview, row);
++		}
+ 		summary_set_row_marks(summaryview, row);
+ 	}
+ 
