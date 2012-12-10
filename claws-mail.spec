@@ -10,8 +10,8 @@
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
-Version:	3.8.1
-Release:	3
+Version:	3.9.0
+Release:	1
 Epoch:		1
 License:	GPLv3+
 Group:		%{Group}
@@ -19,8 +19,6 @@ URL:		http://www.claws-mail.org
 Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
 # from Debian
 Patch0:		claws-mail-3.7.6-trashed-read.patch
-# from upstream
-Patch1:		claws-mail-3.8.1-fix-signature.patch
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	pkgconfig(dbus-1) >= 0.60
 BuildRequires:	pkgconfig(dbus-glib-1) >= 0.60
@@ -38,7 +36,6 @@ BuildRequires:	docbook-utils
 BuildRequires:	libsm-devel
 BuildRequires:	openldap-devel
 BuildRequires:	pilot-link-devel
-BuildRequires:	multiarch-utils
 BuildRequires:	libetpan-devel >= 0.42
 BuildRequires:	flex
 BuildRequires:	bison
@@ -56,13 +53,8 @@ Requires:	aspell-dictionary
 Obsoletes:	%{name}-tools < %{EVRD}
 Provides:	%{name}-tools
 Obsoletes:	%{name}-spamassassin-plugin < %{EVRD}
-# Fix upgrade from mdk 2006:
-Obsoletes:	sylpheed-claws2
-Obsoletes:	sylpheed-claws
 #Clamav is dropped
 Obsoletes:	claws-mail-clamav-plugin < %{EVRD}
-#Pdf Viever is gone
-Obsoletes:	claws-mail-pdf_viewer-plugin < %{EVRD}
 ## additinal feature which can be enabled at configure are jconv
 ## jconv
 ## A general purpose Japanese code conversion tool.
@@ -112,10 +104,8 @@ For a complete listing of Features: http://www.claws-mail.org/features.php
 %package devel
 Summary:	Development files for %{name}
 Group:		Development/Other
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{EVRD}
 Requires:	aspell-dictionary
-Obsoletes:	sylpheed-claws2-devel
-Obsoletes:	sylpheed-claws-devel
 
 %description -n %{name}-devel
 Development files and headers for %{name}.
@@ -124,7 +114,7 @@ Development files and headers for %{name}.
 Summary:	Bogofilter plugin for %{name}
 Group:		%{Group}
 BuildRequires:	bogofilter
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{EVRD}
 Requires:	bogofilter
 
 %description bogofilter-plugin
@@ -137,7 +127,7 @@ less spam.
 %package smime-plugin
 Summary:	S/Mime plugin for %{name}
 Group:		%{Group}
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{EVRD}
 
 %description smime-plugin
 This plugin allows to use S/Mime signatures and encryptions in Claws Mail.
@@ -145,20 +135,17 @@ This plugin allows to use S/Mime signatures and encryptions in Claws Mail.
 %package dillo_viewer-plugin
 Summary:	Dillo HTML viewer plugin for %{name}
 Group:		%{Group}
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{EVRD}
 Requires:	dillo
-Provides:	sylpheed-claws2-dillo_viewer-plugin
-Obsoletes:	sylpheed-claws2-dillo_viewer-plugin < %{epoch}:%{version}-%{release}
 
 %description dillo_viewer-plugin
-This plugin uses the Dillo browser to view text/html MIME parts inside %{name}.
+This plugin uses the Dillo browser to view text/html MIME parts
+inside Claws Mail.
 
 %package pgpcore-plugin
 Summary:	PGP core plugin for %{name}
 Group:		%{Group}
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Provides:	sylpheed-claws2-pgpcore-plugin
-Obsoletes:	sylpheed-claws2-pgpcore-plugin < %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{EVRD}
 
 %description pgpcore-plugin
 Handles core PGP functions and is a dependency of both the PGP/Inline and
@@ -167,10 +154,8 @@ PGP/MIME plugins.
 %package pgpinline-plugin
 Summary:	PGP/Inline plugin for %{name}
 Group:		%{Group}
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-pgpcore-plugin = %{epoch}:%{version}-%{release}
-Provides:	sylpheed-claws2-pgpinline-plugin
-Obsoletes:	sylpheed-claws2-pgpinline-plugin < %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{EVRD}
+Requires:	%{name}-pgpcore-plugin = %{EVRD}
 
 %description pgpinline-plugin
 Handles PGP/Inline signed and/or encrypted mails. You can decrypt mails,
@@ -179,10 +164,8 @@ verify signatures or sign and encrypt your own mails.
 %package pgpmime-plugin
 Summary:	PGP/MIME plugin for %{name}
 Group:		%{Group}
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	%{name}-pgpcore-plugin = %{epoch}:%{version}-%{release}
-Provides:	sylpheed-claws2-pgpmime-plugin
-Obsoletes:	sylpheed-claws2-pgpmime-plugin < %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{EVRD}
+Requires:	%{name}-pgpcore-plugin = %{EVRD}
 
 %description pgpmime-plugin
 Handles PGP/MIME signed and/or encrypted mails. You can decrypt mails, verify
@@ -191,10 +174,8 @@ signatures or sign and encrypt your own mails.
 %package spamassassin-plugin
 Summary:	Spamassassin-plugin for %{name}
 Group:		%{Group}
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{EVRD}
 Requires:	spamassassin-spamd
-Provides:	sylpheed-claws2-spamassassin-plugin
-Obsoletes:	sylpheed-claws2-spamassassin-plugin < %{epoch}:%{version}-%{release}
 
 %description spamassassin-plugin
 Enables the scanning of incoming mail received from a POP, IMAP, or LOCAL
@@ -203,9 +184,7 @@ account using SpamAssassin. See README for configuration and set-up info.
 %package trayicon-plugin
 Summary:	Notafication icon for %{name}
 Group:		%{Group}
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Provides:	sylpheed-claws2-trayicon-plugin
-Obsoletes:	sylpheed-claws2-trayicon-plugin < %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{EVRD}
 
 %description trayicon-plugin
 Places an icon in the system tray that indicates whether you have any new mail.
@@ -216,7 +195,6 @@ info.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p0
 
 %build
 %configure2_5x \
@@ -241,9 +219,6 @@ make check
 
 %install
 %makeinstall_std
-
-# multiarch
-%multiarch_includes %{buildroot}%{_includedir}/%{name}/config.h
 
 ##remove duplicate man#
 rm -rf  %{buildroot}%{_mandir}
@@ -277,7 +252,6 @@ rm -f %{buildroot}%{_docdir}/claws-mail/tools/Makefile*
 %files devel
 %{_includedir}/%{name}
 %{_libdir}/pkgconfig/claws-mail.pc
-%{multiarch_includedir}/%{name}/config.h
 
 %files bogofilter-plugin
 %{_libdir}/%{name}/plugins/bogofilter.so
@@ -308,3 +282,4 @@ rm -f %{buildroot}%{_docdir}/claws-mail/tools/Makefile*
 %files trayicon-plugin
 %doc src/plugins/trayicon/README
 %{_libdir}/%{name}/plugins/trayicon.so
+
