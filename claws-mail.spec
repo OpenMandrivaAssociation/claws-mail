@@ -35,7 +35,7 @@ BuildRequires:	pkgconfig(NetworkManager) >= 0.6.2
 BuildRequires:	docbook-utils
 BuildRequires:	libsm-devel
 BuildRequires:	openldap-devel
-BuildRequires:	pilot-link-devel
+#BuildRequires:	pilot-link-devel
 BuildRequires:	libetpan-devel >= 0.42
 BuildRequires:	flex
 BuildRequires:	bison
@@ -51,7 +51,7 @@ Requires:	rootcerts
 Requires:	common-licenses
 Requires:	aspell-dictionary
 Obsoletes:	%{name}-tools < %{EVRD}
-Provides:	%{name}-tools
+Provides:	%{name}-tools = %{EVRD}
 Obsoletes:	%{name}-spamassassin-plugin < %{EVRD}
 #Clamav is dropped
 Obsoletes:	claws-mail-clamav-plugin < %{EVRD}
