@@ -33,7 +33,7 @@ BuildRequires:	pkgconfig(libgnome-2.0) >= 2.0
 BuildRequires:	pkgconfig(libstartup-notification-1.0) >= 0.5
 BuildRequires:	pkgconfig(NetworkManager) >= 0.6.2
 BuildRequires:	docbook-utils
-BuildRequires:	libsm-devel
+BuildRequires:	pkgconfig(sm)
 BuildRequires:	openldap-devel
 #BuildRequires:	pilot-link-devel
 BuildRequires:	libetpan-devel >= 0.42
