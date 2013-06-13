@@ -32,6 +32,16 @@ BuildRequires:	pkgconfig(gtk+-2.0) >= 2.16
 BuildRequires:	pkgconfig(libgnome-2.0) >= 2.0
 BuildRequires:	pkgconfig(libstartup-notification-1.0) >= 0.5
 BuildRequires:	pkgconfig(NetworkManager) >= 0.6.2
+BuildRequires:	pkgconfig(libgdata)
+BuildRequires:	pkgconfig(poppler)
+BuildRequires:	pkgconfig(libsoup-2.4)
+BuildRequires:	pkgconfig(libnotify)
+BuildRequires:	pkgconfig(libcanberra-gtk)
+BuildRequires:	pkgconfig(indicate-0.6)
+BuildRequires:	pkgconfig(champlain-0.12)
+# (tpg) eanble to build perl and python plugins
+#BuildRequires:	perl-devel
+#BuildRequires:	python-devel
 BuildRequires:	docbook-utils
 BuildRequires:	pkgconfig(sm)
 BuildRequires:	openldap-devel
@@ -203,12 +213,9 @@ info.
 	--enable-ldap \
 	--enable-crash-dialog \
 	--enable-spamassassin-plugin \
-	--enable-dillo-viewer-plugin \
-	--enable-trayicon-plugin \
 	--enable-ipv6 \
 	--enable-compface \
 	--enable-gnutls \
-	--enable-networkmanager-support \
 	--disable-rpath \
 	--disable-static
 
