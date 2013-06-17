@@ -4,21 +4,21 @@
 # modules required by these scripts
 %define __noautoreq 'perl(.*)'
 
-%define version_name %{name}-%{version}
-%define iconname %{name}.png
-%define Group Networking/Mail
-
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
 Version:	3.9.2
 Release:	1
 Epoch:		1
 License:	GPLv3+
-Group:		%{Group}
-URL:		http://www.claws-mail.org
+Group:		Networking/Mail
+Url:		http://www.claws-mail.org
 Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
 # from Debian
 Patch0:		claws-mail-3.7.6-trashed-read.patch
+BuildRequires:	bison
+BuildRequires:	flex
+BuildRequires:	docbook-utils
+BuildRequires:	imagemagick
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	pkgconfig(dbus-1) >= 0.60
 BuildRequires:	pkgconfig(dbus-glib-1) >= 0.60
@@ -29,47 +29,35 @@ BuildRequires:	pkgconfig(gnutls) >= 2.2
 BuildRequires:	pkgconfig(gobject-2.0) >= 2.6
 BuildRequires:	pkgconfig(gthread-2.0) >= 2.6
 BuildRequires:	pkgconfig(gtk+-2.0) >= 2.16
-BuildRequires:	pkgconfig(libgnome-2.0) >= 2.0
-BuildRequires:	pkgconfig(libstartup-notification-1.0) >= 0.5
-BuildRequires:	pkgconfig(NetworkManager) >= 0.6.2
+BuildRequires:	pkgconfig(libcurl)
+BuildRequires:	pkgconfig(libgcrypt)
 BuildRequires:	pkgconfig(libgdata)
-BuildRequires:	pkgconfig(poppler)
-BuildRequires:	pkgconfig(libsoup-2.4)
+BuildRequires:	pkgconfig(libgnome-2.0) >= 2.0
 BuildRequires:	pkgconfig(libnotify)
-BuildRequires:	pkgconfig(libcanberra-gtk)
-BuildRequires:	pkgconfig(indicate-0.6)
-BuildRequires:	pkgconfig(champlain-0.12)
-# (tpg) eanble to build perl and python plugins
-#BuildRequires:	perl-devel
-#BuildRequires:	python-devel
-BuildRequires:	docbook-utils
+BuildRequires:	pkgconfig(libstartup-notification-1.0) >= 0.5
+BuildRequires:	pkgconfig(libxml-2.0)
+BuildRequires:	pkgconfig(NetworkManager) >= 0.6.2
+BuildRequires:	pkgconfig(pilot-link)
+BuildRequires:	pkgconfig(poppler)
+BuildRequires:	pkgconfig(poppler-glib)
+BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(sm)
-BuildRequires:	openldap-devel
-#BuildRequires:	pilot-link-devel
-BuildRequires:	libetpan-devel >= 0.42
-BuildRequires:	flex
-BuildRequires:	bison
-BuildRequires:	valgrind-devel
-BuildRequires:	spamassassin-spamd >= 3.0.0
-BuildRequires:	libgcrypt-devel
-BuildRequires:	gpgme-devel > 0.4.5
-BuildRequires:	imagemagick
+BuildRequires:	pkgconfig(valgrind)
+BuildRequires:	pkgconfig(webkit-1.0)
 BuildRequires:	compface-devel
-
+BuildRequires:	gpgme-devel > 0.4.5
+BuildRequires:	libetpan-devel >= 0.42
+BuildRequires:	libxml2-devel
+BuildRequires:	openldap-devel
+BuildRequires:	perl-devel
 Requires:	compface
 Requires:	rootcerts
 Requires:	common-licenses
 Requires:	aspell-dictionary
-Obsoletes:	%{name}-tools < %{EVRD}
-Provides:	%{name}-tools = %{EVRD}
-Obsoletes:	%{name}-spamassassin-plugin < %{EVRD}
-#Clamav is dropped
-Obsoletes:	claws-mail-clamav-plugin < %{EVRD}
-## additinal feature which can be enabled at configure are jconv
-## jconv
-## A general purpose Japanese code conversion tool.
-## BuildRequires: jconv
-## Requires: jconv
+# These are dropped
+Obsoletes:	%{name}-clamav-plugin < %{EVRD}
+Obsoletes:	%{name}-dillo_viewer-plugin < %{EVRD}
+Obsoletes:	%{name}-trayicon-plugin < %{EVRD}
 
 %description
 Claws-Mail is an e-mail client (and news reader) based on GTK+2, running
@@ -111,18 +99,91 @@ Improved features include:
 
 For a complete listing of Features: http://www.claws-mail.org/features.php
 
+%files -f %{name}.lang
+%{_bindir}/%{name}
+%{_bindir}/sylpheed-claws
+%{_datadir}/applications/claws-mail.desktop
+%dir %{_libdir}/%{name}
+%dir %{_libdir}/%{name}/plugins
+%{_iconsdir}/hicolor/*/apps/*.png
+%{_docdir}/claws-mail
+
+#----------------------------------------------------------------------------
+
 %package devel
-Summary:	Development files for %{name}
+Summary:	Development files for Claws Mail
 Group:		Development/Other
 Requires:	%{name} = %{EVRD}
-Requires:	aspell-dictionary
+# Dropped since 3.9.2
+Obsoletes:	%{name}-notification-plugin-devel < %{EVRD}
+Obsoletes:	%{name}-vcalendar-plugin-devel < %{EVRD}
 
-%description -n %{name}-devel
+%description devel
 Development files and headers for %{name}.
 
+%files devel
+%{_includedir}/%{name}
+%{_libdir}/pkgconfig/claws-mail.pc
+
+#----------------------------------------------------------------------------
+
+%package acpi-plugin
+Summary:	This Claws Mail plugin enables mail notification via LEDs on some laptops
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description acpi-plugin
+This plugin for Claws Mail enables mail notification via LEDs on some laptops.
+
+%files acpi-plugin
+%{_libdir}/%{name}/plugins/acpi_notifier.so
+
+#----------------------------------------------------------------------------
+
+%package address_keeper-plugin
+Summary:	This Claws Mail plugin never forgets e-mail adresses
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description address_keeper-plugin
+This plugin for Claws Mail allows saving outgoing addresses to a designated
+folder in the address book.Addresses are saved only if not found in the
+address book to avoid unwanted duplicates.
+
+%files address_keeper-plugin
+%{_libdir}/%{name}/plugins/address_keeper.so
+
+#----------------------------------------------------------------------------
+
+%package att_remover-plugin
+Summary:	This Claws Mail plugin enables the removal of attachments
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description att_remover-plugin
+This plugin for Claws Mail enables the removal of attachments.
+
+%files att_remover-plugin
+%{_libdir}/%{name}/plugins/att_remover.so
+
+#----------------------------------------------------------------------------
+
+%package attachwarner-plugin
+Summary:	This Claws Mail plugin enables attachment warnings
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description attachwarner-plugin
+This Claws Mail plugin enables attachment warnings.
+
+%files attachwarner-plugin
+%{_libdir}/%{name}/plugins/attachwarner.so
+
+#----------------------------------------------------------------------------
+
 %package bogofilter-plugin
-Summary:	Bogofilter plugin for %{name}
-Group:		%{Group}
+Summary:	Bogofilter plugin for Claws Mail
+Group:		Networking/Mail
 BuildRequires:	bogofilter
 Requires:	%{name} = %{EVRD}
 Requires:	bogofilter
@@ -134,36 +195,166 @@ or save it to a designated folder. Bogofilter is a pure Bayesian filter,
 therefore it has better speed performance than SpamAssassin but might catch
 less spam.
 
-%package smime-plugin
-Summary:	S/Mime plugin for %{name}
-Group:		%{Group}
+%files bogofilter-plugin
+%{_libdir}/%{name}/plugins/bogofilter.so
+
+#----------------------------------------------------------------------------
+
+%package bsfilter-plugin
+Summary:	This Claws Mail plugin enables spam fitering through bsfilter
+Group:		Networking/Mail
 Requires:	%{name} = %{EVRD}
 
-%description smime-plugin
-This plugin allows to use S/Mime signatures and encryptions in Claws Mail.
+%description bsfilter-plugin
+Check all messages that are received from an IMAP, LOCAL or POP account
+for spam using Bsfilter.
 
-%package dillo_viewer-plugin
-Summary:	Dillo HTML viewer plugin for %{name}
-Group:		%{Group}
+%files bsfilter-plugin
+%{_libdir}/%{name}/plugins/bsfilter.so
+
+#----------------------------------------------------------------------------
+
+%package clamd-plugin
+Summary:	This Claws Mail plugin enables spam fitering through Clam AntiVirus
+Group:		Networking/Mail
 Requires:	%{name} = %{EVRD}
-Requires:	dillo
 
-%description dillo_viewer-plugin
-This plugin uses the Dillo browser to view text/html MIME parts
-inside Claws Mail.
+%description clamd-plugin
+Check all messages that are received from an IMAP, LOCAL or POP account
+for spam using Clam AntiVirus.
+
+%files clamd-plugin
+%{_libdir}/%{name}/plugins/clamd.so
+
+#----------------------------------------------------------------------------
+
+%package fancy-plugin
+Summary:	This Claws Mail plugin renders HTML e-mails through WebKit
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description fancy-plugin
+Renders HTML e-mail using the WebKit library.
+
+%files fancy-plugin
+%{_libdir}/%{name}/plugins/fancy.so
+
+#----------------------------------------------------------------------------
+
+%package fetchinfo-plugin
+Summary:	This Claws Mail plugin inserts headers containing some download information
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description fetchinfo-plugin
+This plugin for Claws Mail inserts headers containing some download
+information: UIDL, Sylpheeds account name, POP server, user ID
+and retrieval time.
+
+%files fetchinfo-plugin
+%{_libdir}/%{name}/plugins/fetchinfo.so
+
+#----------------------------------------------------------------------------
+
+%package gdata-plugin
+Summary:	This Claws Mail plugin enables access to GData (Google services)
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description gdata-plugin
+Plugin to access to GData (Google services). The only currently implemented
+feature is inclusion of Google contacts into the address completion.
+
+%files gdata-plugin
+%{_libdir}/%{name}/plugins/gdata.so
+
+#----------------------------------------------------------------------------
+
+%package mailmbox-plugin
+Summary:	This Claws Mail plugin provides direct access to mbox folders
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description mailmbox-plugin
+This Claws Mail plugin provides direct access to mbox folders.
+
+%files mailmbox-plugin
+%{_libdir}/%{name}/plugins/mailmbox.so
+
+#----------------------------------------------------------------------------
+
+%package newmail-plugin
+Summary:	This Claws Mail plugin can write a summary to a log file
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description newmail-plugin
+This Claws Mail plugin can write a summary to a log file upon
+receiving new mail. It defaults to ~/Mail/NewLog.
+
+%files newmail-plugin
+%{_libdir}/%{name}/plugins/newmail.so
+
+#----------------------------------------------------------------------------
+
+%package notification-plugin
+Summary:	This Claws Mail plugin notifies about new mail
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description notification-plugin
+This Claws Mail plugin notifies about new mail.
+
+%files notification-plugin
+%{_libdir}/%{name}/plugins/notification.so
+
+#----------------------------------------------------------------------------
+
+%package pdfviewer-plugin
+Summary:	This Claws Mail plugin handles PDF and PostScript attachments
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description pdfviewer-plugin
+This Claws Mail plugin This plugin handles PDF and PostScript attachments.
+
+%files pdfviewer-plugin
+%{_libdir}/%{name}/plugins/pdf_viewer.so
+
+#----------------------------------------------------------------------------
+
+%package perl-plugin
+Summary:	Perl interface to Claws Mail's filtering mechanism
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description perl-plugin
+This plugin is intended to extend the filtering possibilities of Claws Mail.
+It provides a Perl interface to Claws Mail's filtering mechanism, allowing
+the use of full Perl power in email filters.
+
+%files perl-plugin
+%{_libdir}/%{name}/plugins/perl.so
+
+#----------------------------------------------------------------------------
 
 %package pgpcore-plugin
-Summary:	PGP core plugin for %{name}
-Group:		%{Group}
+Summary:	PGP core plugin for Claws Mail
+Group:		Networking/Mail
 Requires:	%{name} = %{EVRD}
 
 %description pgpcore-plugin
 Handles core PGP functions and is a dependency of both the PGP/Inline and
 PGP/MIME plugins.
 
+%files pgpcore-plugin
+%{_libdir}/%{name}/plugins/pgpcore.so
+
+#----------------------------------------------------------------------------
+
 %package pgpinline-plugin
-Summary:	PGP/Inline plugin for %{name}
-Group:		%{Group}
+Summary:	PGP/Inline plugin for Claws Mail
+Group:		Networking/Mail
 Requires:	%{name} = %{EVRD}
 Requires:	%{name}-pgpcore-plugin = %{EVRD}
 
@@ -171,9 +362,15 @@ Requires:	%{name}-pgpcore-plugin = %{EVRD}
 Handles PGP/Inline signed and/or encrypted mails. You can decrypt mails,
 verify signatures or sign and encrypt your own mails.
 
+%files pgpinline-plugin
+%{_libdir}/%{name}/plugins/pgpinline.so
+%{_libdir}/%{name}/plugins/pgpinline.deps
+
+#----------------------------------------------------------------------------
+
 %package pgpmime-plugin
-Summary:	PGP/MIME plugin for %{name}
-Group:		%{Group}
+Summary:	PGP/MIME plugin for Claws Mail
+Group:		Networking/Mail
 Requires:	%{name} = %{EVRD}
 Requires:	%{name}-pgpcore-plugin = %{EVRD}
 
@@ -181,9 +378,56 @@ Requires:	%{name}-pgpcore-plugin = %{EVRD}
 Handles PGP/MIME signed and/or encrypted mails. You can decrypt mails, verify
 signatures or sign and encrypt your own mails.
 
+%files pgpmime-plugin
+%{_libdir}/%{name}/plugins/pgpmime.so
+%{_libdir}/%{name}/plugins/pgpmime.deps
+
+#----------------------------------------------------------------------------
+
+%package python-plugin
+Summary:	Python scriptin access to Claws Mail
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description python-plugin
+This plugin offers a Python scripting access to Claws Mail.
+
+%files python-plugin
+%{_libdir}/%{name}/plugins/python.so
+
+#----------------------------------------------------------------------------
+
+%package rssyl-plugin
+Summary:	This Claws Mail plugin allows you to read your favorite newsfeeds
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description rssyl-plugin
+This plugin allows you to read your favorite newsfeeds in Claws Mail.
+RSS 1.0, 2.0 and Atom feeds are currently supported.
+
+%files rssyl-plugin
+%{_libdir}/%{name}/plugins/rssyl.so
+
+#----------------------------------------------------------------------------
+
+%package smime-plugin
+Summary:	S/Mime plugin for Claws Mail
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description smime-plugin
+This plugin allows to use S/Mime signatures and encryptions in Claws Mail.
+
+%files smime-plugin
+%{_libdir}/%{name}/plugins/smime.so
+%{_libdir}/%{name}/plugins/smime.deps
+
+#----------------------------------------------------------------------------
+
 %package spamassassin-plugin
-Summary:	Spamassassin-plugin for %{name}
-Group:		%{Group}
+Summary:	Spamassassin-plugin for Claws Mail
+Group:		Networking/Mail
 Requires:	%{name} = %{EVRD}
 Requires:	spamassassin-spamd
 
@@ -191,16 +435,53 @@ Requires:	spamassassin-spamd
 Enables the scanning of incoming mail received from a POP, IMAP, or LOCAL
 account using SpamAssassin. See README for configuration and set-up info.
 
-%package trayicon-plugin
-Summary:	Notafication icon for %{name}
-Group:		%{Group}
+%files spamassassin-plugin
+%doc src/plugins/spamassassin/README
+%{_libdir}/%{name}/plugins/spamassassin.so
+
+#----------------------------------------------------------------------------
+
+%package spam_report-plugin
+Summary:	This Claws Mail plugin provides spamreport
+Group:		Networking/Mail
 Requires:	%{name} = %{EVRD}
 
-%description trayicon-plugin
-Places an icon in the system tray that indicates whether you have any new mail.
-A tooltip also shows the current new, unread and total number of messages, and
-a contextual menu allows the most common operations. See README for additional
-info.
+%description spam_report-plugin
+This Claws Mail plugin provides spamreport.
+
+%files spam_report-plugin
+%{_libdir}/%{name}/plugins/spamreport.so
+
+#----------------------------------------------------------------------------
+
+%package tnef_parse-plugin
+Summary:	This Claws Mail plugin enables parsing MS-TNEF attachments
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description tnef_parse-plugin
+This Claws Mail plugin enables parsing MS-TNEF attachments.
+
+%files tnef_parse-plugin
+%{_libdir}/%{name}/plugins/tnef_parse.so
+
+#----------------------------------------------------------------------------
+
+%package vcalendar-plugin
+Summary:	This Claws Mail plugin enables vCalendar message handling
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description vcalendar-plugin
+This Claws Mail plugin handles the vCalendar format (or rather, the meeting
+subset of it). It displays such mails in a nice format, lets you create and
+send meetings, and creates a virtual folder with the meetings you have sent
+or received.
+
+%files vcalendar-plugin
+%{_libdir}/%{name}/plugins/vcalendar.so
+
+#----------------------------------------------------------------------------
 
 %prep
 %setup -q
@@ -216,6 +497,7 @@ info.
 	--enable-ipv6 \
 	--enable-compface \
 	--enable-gnutls \
+	--enable-networkmanager-support \
 	--disable-rpath \
 	--disable-static
 
@@ -233,11 +515,11 @@ rm -rf  %{buildroot}%{_mandir}
 rm -f %{buildroot}%{_libdir}/%{name}/plugins/*.*a
 
 mkdir -p %{buildroot}%{_iconsdir}/hicolor/{16x16,32x32,48x48,64x64,128x128}/apps
-convert %{name}.png -geometry 16x16 %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{iconname}
-convert %{name}.png -geometry 32x32 %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{iconname}
-install -m644 %{name}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{iconname}
-install -m644 %{name}-64x64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{iconname}
-install -m644 %{name}-128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{iconname}
+convert %{name}.png -geometry 16x16 %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
+convert %{name}.png -geometry 32x32 %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+install -m644 %{name}.png %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/%{name}.png
+install -m644 %{name}-64x64.png %{buildroot}%{_datadir}/icons/hicolor/64x64/apps/%{name}.png
+install -m644 %{name}-128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/apps/%{name}.png
 
 mkdir -p %{buildroot}%{_datadir}/applications/
 install -m644 %{name}.desktop %{buildroot}%{_datadir}/applications/
@@ -246,47 +528,4 @@ cp -a ABOUT-NLS AUTHORS NEWS README* TODO* RELEASE_NOTES tools %{buildroot}%{_do
 rm -f %{buildroot}%{_docdir}/claws-mail/tools/Makefile*
 
 %find_lang %{name}
-
-%files -f %{name}.lang
-%{_bindir}/%{name}
-%{_bindir}/sylpheed-claws
-%{_datadir}/applications/claws-mail.desktop
-%dir %{_libdir}/%{name}
-%dir %{_libdir}/%{name}/plugins
-%{_iconsdir}/hicolor/*/apps/*.png
-%{_docdir}/claws-mail
-
-%files devel
-%{_includedir}/%{name}
-%{_libdir}/pkgconfig/claws-mail.pc
-
-%files bogofilter-plugin
-%{_libdir}/%{name}/plugins/bogofilter.so
-
-%files smime-plugin
-%{_libdir}/%{name}/plugins/smime.so
-%{_libdir}/%{name}/plugins/smime.deps
-
-%files dillo_viewer-plugin
-%doc src/plugins/dillo_viewer/README
-%{_libdir}/%{name}/plugins/dillo*.so
-
-%files pgpcore-plugin
-%{_libdir}/%{name}/plugins/pgpcore.so
-
-%files pgpinline-plugin
-%{_libdir}/%{name}/plugins/pgpinline.so
-%{_libdir}/%{name}/plugins/pgpinline.deps
-
-%files pgpmime-plugin
-%{_libdir}/%{name}/plugins/pgpmime.so
-%{_libdir}/%{name}/plugins/pgpmime.deps
-
-%files spamassassin-plugin
-%doc src/plugins/spamassassin/README
-%{_libdir}/%{name}/plugins/spamassassin*.so
-
-%files trayicon-plugin
-%doc src/plugins/trayicon/README
-%{_libdir}/%{name}/plugins/trayicon.so
 
