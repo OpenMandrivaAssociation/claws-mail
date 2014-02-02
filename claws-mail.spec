@@ -6,8 +6,8 @@
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
-Version:	3.9.2
-Release:	2
+Version:	3.9.3
+Release:	1
 Epoch:		1
 License:	GPLv3+
 Group:		Networking/Mail
@@ -494,6 +494,7 @@ or received.
 	--enable-ldap \
 	--enable-crash-dialog \
 	--enable-spamassassin-plugin \
+	--disable-archive-plugin \
 	--enable-ipv6 \
 	--enable-compface \
 	--enable-gnutls \
