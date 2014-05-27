@@ -6,7 +6,7 @@
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
-Version:	3.9.3
+Version:	3.10.0
 Release:	1
 Epoch:		1
 License:	GPLv3+
@@ -102,6 +102,7 @@ For a complete listing of Features: http://www.claws-mail.org/features.php
 %files -f %{name}.lang
 %{_bindir}/%{name}
 %{_bindir}/sylpheed-claws
+%{_datadir}/appdata/claws-mail.appdata.xml
 %{_datadir}/applications/claws-mail.desktop
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/plugins
@@ -267,6 +268,20 @@ feature is inclusion of Google contacts into the address completion.
 
 %files gdata-plugin
 %{_libdir}/%{name}/plugins/gdata.so
+
+#----------------------------------------------------------------------------
+
+%package libravatar-plugin
+Summary:	This Claws Mail plugin enables libravatar support
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
+
+%description libravatar-plugin
+Plugin to show the profile pictures associated to email addresses provided by
+libravatar service ( http://www.libravatar.org ).
+
+%files libravatar-plugin
+%{_libdir}/%{name}/plugins/libravatar.so
 
 #----------------------------------------------------------------------------
 
