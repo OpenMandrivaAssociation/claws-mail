@@ -50,6 +50,8 @@ BuildRequires:	libetpan-devel >= 0.42
 BuildRequires:	libxml2-devel
 BuildRequires:	openldap-devel
 BuildRequires:	perl-devel
+BuildRequires:	pkgconfig(python)
+
 Requires:	compface
 Requires:	rootcerts
 Requires:	common-licenses
