@@ -50,7 +50,7 @@ BuildRequires:	libetpan-devel >= 0.42
 BuildRequires:	libxml2-devel
 BuildRequires:	openldap-devel
 BuildRequires:	perl-devel
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python2)
 
 Requires:	compface
 Requires:	rootcerts
@@ -505,6 +505,9 @@ or received.
 %patch0 -p1
 
 %build
+ln -s %{_bindir}/python2 python
+export PATH=`pwd`:$PATH
+
 %configure2_5x \
 	--enable-enchant \
 	--enable-jpilot \
