@@ -6,13 +6,13 @@
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
-Version:	3.10.0
-Release:	3
+Version:	3.13.1
+Release:	1
 Epoch:		1
 License:	GPLv3+
 Group:		Networking/Mail
 Url:		http://www.claws-mail.org
-Source0:	http://downloads.sourceforge.net/sylpheed-claws/%{name}-%{version}.tar.bz2
+Source0:	http://www.claws-mail.org/releases/%{name}-%{version}.tar.xz
 # from Debian
 Patch0:		claws-mail-3.7.6-trashed-read.patch
 BuildRequires:	bison
@@ -32,7 +32,6 @@ BuildRequires:	pkgconfig(gtk+-2.0) >= 2.16
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libgcrypt)
 BuildRequires:	pkgconfig(libgdata)
-BuildRequires:	pkgconfig(libgnome-2.0) >= 2.0
 BuildRequires:	pkgconfig(libnotify)
 BuildRequires:	pkgconfig(libstartup-notification-1.0) >= 0.5
 BuildRequires:	pkgconfig(libxml-2.0)
@@ -104,7 +103,6 @@ For a complete listing of Features: http://www.claws-mail.org/features.php
 %files -f %{name}.lang
 %{_bindir}/%{name}
 %{_bindir}/sylpheed-claws
-%{_datadir}/appdata/claws-mail.appdata.xml
 %{_datadir}/applications/claws-mail.desktop
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/plugins
@@ -284,6 +282,19 @@ libravatar service ( http://www.libravatar.org ).
 
 %files libravatar-plugin
 %{_libdir}/%{name}/plugins/libravatar.so
+
+#----------------------------------------------------------------------------
+
+%package plugins-managesieve
+Summary:        Add Manage sieve support to Claws Mail
+Group:          Networking/Mail
+Requires:       %{name} = %{EVRD}
+
+%description plugins-managesieve
+Manage sieve filters on a server using the ManageSieve protocol.
+
+%files plugins-managesieve
+%{_libdir}/%{name}/plugins/managesieve.so
 
 #----------------------------------------------------------------------------
 

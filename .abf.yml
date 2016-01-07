@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   claws-mail-3.10.0.tar.bz2: 8cdae7b93bdf41f0a2183cc7edf3d725d62dbda8
+sources:
+  claws-mail-3.13.1.tar.xz: a40ce184245f467b2eb6d1ca4249f797d84b12d6
