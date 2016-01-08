@@ -20,6 +20,7 @@ BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	docbook-utils
 BuildRequires:	imagemagick
+BuildRequires:	libtool
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	pkgconfig(dbus-1) >= 0.60
 BuildRequires:	pkgconfig(dbus-glib-1) >= 0.60
