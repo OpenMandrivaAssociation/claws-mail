@@ -7,7 +7,7 @@
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
-Version:	3.13.1
+Version:	3.16.0
 Release:	1
 Epoch:		1
 License:	GPLv3+
@@ -44,7 +44,6 @@ BuildRequires:	pkgconfig(poppler-glib)
 BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(sm)
 BuildRequires:	pkgconfig(valgrind)
-BuildRequires:	pkgconfig(webkit-1.0)
 BuildRequires:	compface-devel
 BuildRequires:	gpgme-devel > 0.4.5
 BuildRequires:	libetpan-devel >= 0.42
@@ -228,19 +227,6 @@ for spam using Clam AntiVirus.
 
 %files clamd-plugin
 %{_libdir}/%{name}/plugins/clamd.so
-
-#----------------------------------------------------------------------------
-
-%package fancy-plugin
-Summary:	This Claws Mail plugin renders HTML e-mails through WebKit
-Group:		Networking/Mail
-Requires:	%{name} = %{EVRD}
-
-%description fancy-plugin
-Renders HTML e-mail using the WebKit library.
-
-%files fancy-plugin
-%{_libdir}/%{name}/plugins/fancy.so
 
 #----------------------------------------------------------------------------
 
