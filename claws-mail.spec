@@ -51,6 +51,8 @@ BuildRequires:	libxml2-devel
 BuildRequires:	openldap-devel
 BuildRequires:	perl-devel
 BuildRequires:	pkgconfig(python2)
+BuildRequires:	libytnef-devel
+BuildRequires:	pkgconfig(libical)
 
 Requires:	compface
 Requires:	rootcerts
