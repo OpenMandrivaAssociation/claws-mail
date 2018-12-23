@@ -344,6 +344,7 @@ This Claws Mail plugin This plugin handles PDF and PostScript attachments.
 Summary:	Perl interface to Claws Mail's filtering mechanism
 Group:		Networking/Mail
 Requires:	%{name} = %{EVRD}
+BuildRequires:	perl-devel
 
 %description perl-plugin
 This plugin is intended to extend the filtering possibilities of Claws Mail.
