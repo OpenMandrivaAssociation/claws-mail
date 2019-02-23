@@ -3,7 +3,7 @@
 
 # There are perl scripts in docs/tools and we don't want to install perl
 # modules required by these scripts
-%define __noautoreq 'perl(.*)'
+#define __noautoreq 'perl(.*)'
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
@@ -49,7 +49,6 @@ BuildRequires:	libetpan-devel >= 0.42
 BuildRequires:	libxml2-devel
 BuildRequires:	openldap-devel
 BuildRequires:	perl-devel
-BuildRequires:	perl-ExtUtils-Embed
 BuildRequires:	pkgconfig(python2)
 BuildRequires:	libytnef-devel
 BuildRequires:	pkgconfig(libical)
