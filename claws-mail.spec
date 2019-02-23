@@ -443,19 +443,19 @@ This plugin allows to use S/Mime signatures and encryptions in Claws Mail.
 
 #----------------------------------------------------------------------------
 
-%package spamassassin-plugin
-Summary:	Spamassassin-plugin for Claws Mail
-Group:		Networking/Mail
-Requires:	%{name} = %{EVRD}
-Requires:	spamassassin-spamd
-
-%description spamassassin-plugin
-Enables the scanning of incoming mail received from a POP, IMAP, or LOCAL
-account using SpamAssassin. See README for configuration and set-up info.
-
-%files spamassassin-plugin
-%doc src/plugins/spamassassin/README
-%{_libdir}/%{name}/plugins/spamassassin.so
+#package spamassassin-plugin
+#Summary:	Spamassassin-plugin for Claws Mail
+#Group:		Networking/Mail
+#Requires:	%{name} = %{EVRD}
+#Requires:	spamassassin-spamd
+#
+#description spamassassin-plugin
+#Enables the scanning of incoming mail received from a POP, IMAP, or LOCAL
+#account using SpamAssassin. See README for configuration and set-up info.
+#
+#files spamassassin-plugin
+#doc src/plugins/spamassassin/README
+#{_libdir}/%{name}/plugins/spamassassin.so
 
 #----------------------------------------------------------------------------
 
@@ -514,7 +514,7 @@ export PATH=`pwd`:$PATH
 	--enable-jpilot \
 	--enable-ldap \
 	--enable-crash-dialog \
-	--enable-spamassassin-plugin \
+	--disable-spamassassin-plugin \
 	--disable-archive-plugin \
 	--enable-ipv6 \
 	--enable-compface \
