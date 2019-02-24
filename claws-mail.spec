@@ -105,7 +105,7 @@ For a complete listing of Features: http://www.claws-mail.org/features.php
 
 %files -f %{name}.lang
 %{_bindir}/%{name}
-%{_bindir}/sylpheed-claws
+#{_bindir}/sylpheed-claws
 %{_datadir}/applications/claws-mail.desktop
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/plugins
@@ -524,13 +524,13 @@ export PATH=`pwd`:$PATH
 	--disable-rpath \
 	--disable-static
 
-%make LIBTOOL=%{_bindir}/libtool
+%make_build LIBTOOL=%{_bindir}/libtool
 
 %check
 make check
 
 %install
-%makeinstall_std
+%make_install
 
 ##remove duplicate man#
 rm -rf  %{buildroot}%{_mandir}
