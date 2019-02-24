@@ -232,6 +232,19 @@ for spam using Clam AntiVirus.
 
 #----------------------------------------------------------------------------
 
+%package dillo-plugin
+Summary:	This plugin renders HTML e-mails through dillo
+Group:		Networking/Mail
+Requires:	dillo
+
+%description dillo-plugin
+Renders HTML e-mail using dillo webbrowser
+
+%files dillo-plugin
+%{_libdir}/claws-mail/plugins/dillo.so
+
+#----------------------------------------------------------------------------
+
 %package fetchinfo-plugin
 Summary:	This Claws Mail plugin inserts headers containing some download information
 Group:		Networking/Mail
