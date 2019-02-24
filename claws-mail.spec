@@ -3,13 +3,12 @@
 
 # There are perl scripts in docs/tools and we don't want to install perl
 # modules required by these scripts
-%define __noautoreq 'perl(.*)'
+#define __noautoreq 'perl(.*)'
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
-Version:	3.16.0
+Version:	3.17.3
 Release:	1
-Epoch:		1
 License:	GPLv3+
 Group:		Networking/Mail
 Url:		http://www.claws-mail.org
@@ -50,6 +49,7 @@ BuildRequires:	libetpan-devel >= 0.42
 BuildRequires:	libxml2-devel
 BuildRequires:	openldap-devel
 BuildRequires:	perl-devel
+BuildRequires:	perl-ExtUtils-Embed
 BuildRequires:	pkgconfig(python2)
 BuildRequires:	libytnef-devel
 BuildRequires:	pkgconfig(libical)
@@ -105,7 +105,7 @@ For a complete listing of Features: http://www.claws-mail.org/features.php
 
 %files -f %{name}.lang
 %{_bindir}/%{name}
-%{_bindir}/sylpheed-claws
+#{_bindir}/sylpheed-claws
 %{_datadir}/applications/claws-mail.desktop
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/plugins
@@ -232,6 +232,19 @@ for spam using Clam AntiVirus.
 
 #----------------------------------------------------------------------------
 
+%package dillo-plugin
+Summary:	This plugin renders HTML e-mails through dillo
+Group:		Networking/Mail
+Requires:	dillo
+
+%description dillo-plugin
+Renders HTML e-mail using dillo webbrowser
+
+%files dillo-plugin
+%{_libdir}/claws-mail/plugins/dillo.so
+
+#----------------------------------------------------------------------------
+
 %package fetchinfo-plugin
 Summary:	This Claws Mail plugin inserts headers containing some download information
 Group:		Networking/Mail
@@ -345,6 +358,7 @@ This Claws Mail plugin This plugin handles PDF and PostScript attachments.
 Summary:	Perl interface to Claws Mail's filtering mechanism
 Group:		Networking/Mail
 Requires:	%{name} = %{EVRD}
+BuildRequires:	perl-devel
 
 %description perl-plugin
 This plugin is intended to extend the filtering possibilities of Claws Mail.
@@ -523,13 +537,13 @@ export PATH=`pwd`:$PATH
 	--disable-rpath \
 	--disable-static
 
-%make LIBTOOL=%{_bindir}/libtool
+%make_build LIBTOOL=%{_bindir}/libtool
 
 %check
 make check
 
 %install
-%makeinstall_std
+%make_install
 
 ##remove duplicate man#
 rm -rf  %{buildroot}%{_mandir}
