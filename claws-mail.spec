@@ -7,7 +7,7 @@
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
-Version:	3.17.3
+Version:	3.17.5
 Release:	1
 Epoch:		1
 License:	GPLv3+
@@ -37,7 +37,6 @@ BuildRequires:	pkgconfig(libgdata)
 BuildRequires:	pkgconfig(libnotify)
 BuildRequires:	pkgconfig(libstartup-notification-1.0) >= 0.5
 BuildRequires:	pkgconfig(libxml-2.0)
-BuildRequires:	pkgconfig(NetworkManager) >= 0.6.2
 BuildRequires:	pkgconfig(pilot-link)
 BuildRequires:	pkgconfig(poppler)
 BuildRequires:	pkgconfig(poppler-glib)
@@ -524,7 +523,7 @@ or received.
 ln -s %{_bindir}/python2 python
 export PATH=`pwd`:$PATH
 
-%configure2_5x \
+%configure \
 	--enable-enchant \
 	--enable-jpilot \
 	--enable-ldap \
