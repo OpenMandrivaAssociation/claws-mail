@@ -37,7 +37,6 @@ BuildRequires:	pkgconfig(libgdata)
 BuildRequires:	pkgconfig(libnotify)
 BuildRequires:	pkgconfig(libstartup-notification-1.0) >= 0.5
 BuildRequires:	pkgconfig(libxml-2.0)
-BuildRequires:	pkgconfig(NetworkManager) >= 0.6.2
 BuildRequires:	pkgconfig(pilot-link)
 BuildRequires:	pkgconfig(poppler)
 BuildRequires:	pkgconfig(poppler-glib)
