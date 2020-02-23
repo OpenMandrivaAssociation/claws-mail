@@ -523,7 +523,7 @@ or received.
 ln -s %{_bindir}/python2 python
 export PATH=`pwd`:$PATH
 
-%configure2_5x \
+%configure \
 	--enable-enchant \
 	--enable-jpilot \
 	--enable-ldap \
