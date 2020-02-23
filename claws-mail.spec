@@ -8,7 +8,7 @@
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
 Version:	3.17.5
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPLv3+
 Group:		Networking/Mail
@@ -35,6 +35,8 @@ BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(libgcrypt)
 BuildRequires:	pkgconfig(libgdata)
 BuildRequires:	pkgconfig(libnotify)
+BuildRequires:	pkgconfig(libnm)
+BuildRequires:	pkgconfig(librsvg-2.0)
 BuildRequires:	pkgconfig(libstartup-notification-1.0) >= 0.5
 BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(pilot-link)
