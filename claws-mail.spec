@@ -42,7 +42,7 @@ BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(pilot-link)
 BuildRequires:	pkgconfig(poppler)
 BuildRequires:	pkgconfig(poppler-glib)
-BuildRequires:	pkgconfig(pygtk-2.0)
+#BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(sm)
 BuildRequires:	pkgconfig(valgrind)
 BuildRequires:	compface-devel
