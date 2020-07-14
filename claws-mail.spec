@@ -418,16 +418,16 @@ signatures or sign and encrypt your own mails.
 
 #----------------------------------------------------------------------------
 
-%package python-plugin
-Summary:	Python scriptin access to Claws Mail
-Group:		Networking/Mail
-Requires:	%{name} = %{EVRD}
+#package python-plugin
+#Summary:	Python scriptin access to Claws Mail
+#Group:		Networking/Mail
+#Requires:	%{name} = %{EVRD}
 
-%description python-plugin
-This plugin offers a Python scripting access to Claws Mail.
+#description python-plugin
+#This plugin offers a Python scripting access to Claws Mail.
 
-%files python-plugin
-%{_libdir}/%{name}/plugins/python.so
+#files python-plugin
+#{_libdir}/%{name}/plugins/python.so
 
 #----------------------------------------------------------------------------
 
