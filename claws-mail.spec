@@ -39,7 +39,7 @@ BuildRequires:	pkgconfig(libnm)
 BuildRequires:	pkgconfig(librsvg-2.0)
 BuildRequires:	pkgconfig(libstartup-notification-1.0) >= 0.5
 BuildRequires:	pkgconfig(libxml-2.0)
-BuildRequires:	pkgconfig(pilot-link)
+#BuildRequires:	pkgconfig(pilot-link)
 BuildRequires:	pkgconfig(poppler)
 BuildRequires:	pkgconfig(poppler-glib)
 #BuildRequires:	pkgconfig(pygtk-2.0)
