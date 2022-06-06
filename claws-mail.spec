@@ -44,6 +44,7 @@ BuildRequires:	pkgconfig(poppler)
 BuildRequires:	pkgconfig(poppler-glib)
 #BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(sm)
+BuildRequires:	pkgconfig(webkit2gtk-4.0)
 BuildRequires:	pkgconfig(valgrind)
 BuildRequires:	compface-devel
 BuildRequires:	gpgme-devel > 0.4.5
@@ -273,6 +274,20 @@ feature is inclusion of Google contacts into the address completion.
 
 %files gdata-plugin
 %{_libdir}/%{name}/plugins/gdata.so
+
+#----------------------------------------------------------------------------
+
+%package keyword_warner-plugin
+Summary:        keyword_warner plugin for %{name}
+Group:          Networking/Mail
+Requires:       %{name} = %{EVRD}
+
+%description keyword_warner-plugin
+This plugin show a warning when sending or queueing a message and a reference to one or more 
+user-defined keywords are found in the message text.
+
+%files keyword_warner-plugin
+%{_libdir}/%{name}/plugins/keyword_warner.so
 
 #----------------------------------------------------------------------------
 
