@@ -248,6 +248,19 @@ Renders HTML e-mail using dillo webbrowser
 
 #----------------------------------------------------------------------------
 
+%package fancy-plugin
+Summary:        This plugin renders HTML e-mails through WebKit
+Group:          Networking/Mail
+Requires:       %{name} = %{EVRD}
+
+%description fancy-plugin
+Renders HTML e-mail using the WebKit library
+
+%files fancy-plugin
+%{_libdir}/%{name}/plugins/fancy*
+
+#----------------------------------------------------------------------------
+
 %package fetchinfo-plugin
 Summary:	This Claws Mail plugin inserts headers containing some download information
 Group:		Networking/Mail
