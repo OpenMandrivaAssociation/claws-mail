@@ -7,7 +7,7 @@
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
-Version:	4.0.0
+Version:	4.1.0
 Release:	1
 Epoch:		1
 License:	GPLv3+
@@ -44,6 +44,7 @@ BuildRequires:	pkgconfig(poppler)
 BuildRequires:	pkgconfig(poppler-glib)
 #BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(sm)
+BuildRequires:	pkgconfig(webkit2gtk-4.0)
 BuildRequires:	pkgconfig(valgrind)
 BuildRequires:	compface-devel
 BuildRequires:	gpgme-devel > 0.4.5
@@ -247,6 +248,19 @@ Renders HTML e-mail using dillo webbrowser
 
 #----------------------------------------------------------------------------
 
+%package fancy-plugin
+Summary:        This plugin renders HTML e-mails through WebKit
+Group:          Networking/Mail
+Requires:       %{name} = %{EVRD}
+
+%description fancy-plugin
+Renders HTML e-mail using the WebKit library
+
+%files fancy-plugin
+%{_libdir}/%{name}/plugins/fancy*
+
+#----------------------------------------------------------------------------
+
 %package fetchinfo-plugin
 Summary:	This Claws Mail plugin inserts headers containing some download information
 Group:		Networking/Mail
@@ -273,6 +287,20 @@ feature is inclusion of Google contacts into the address completion.
 
 %files gdata-plugin
 %{_libdir}/%{name}/plugins/gdata.so
+
+#----------------------------------------------------------------------------
+
+%package keyword_warner-plugin
+Summary:        keyword_warner plugin for %{name}
+Group:          Networking/Mail
+Requires:       %{name} = %{EVRD}
+
+%description keyword_warner-plugin
+This plugin show a warning when sending or queueing a message and a reference to one or more 
+user-defined keywords are found in the message text.
+
+%files keyword_warner-plugin
+%{_libdir}/%{name}/plugins/keyword_warner.so
 
 #----------------------------------------------------------------------------
 
