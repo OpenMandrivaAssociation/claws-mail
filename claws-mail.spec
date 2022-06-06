@@ -7,7 +7,7 @@
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
-Version:	4.0.0
+Version:	4.1.0
 Release:	1
 Epoch:		1
 License:	GPLv3+
