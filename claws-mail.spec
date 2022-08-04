@@ -16,6 +16,9 @@ Url:		http://www.claws-mail.org
 Source0:	http://www.claws-mail.org/releases/%{name}-%{version}.tar.xz
 # from Debian
 Patch0:		claws-mail-3.7.6-trashed-read.patch
+
+Patch1:		claws-mail-4.1.0-perl-5.36.patch
+
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	docbook-utils
@@ -548,6 +551,7 @@ or received.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 ln -s %{_bindir}/python2 python
