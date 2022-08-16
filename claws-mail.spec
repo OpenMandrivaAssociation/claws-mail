@@ -61,6 +61,7 @@ BuildRequires:	libytnef-devel
 BuildRequires:	pkgconfig(libical)
 
 Requires:	compface
+Requires:	enchant
 Requires:	rootcerts
 Requires:	common-licenses
 Requires:	aspell-dictionary
