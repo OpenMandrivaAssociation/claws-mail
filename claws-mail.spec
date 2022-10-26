@@ -7,8 +7,8 @@
 
 Summary:	The user-friendly, lightweight and fast GTK2 based email client
 Name:		claws-mail
-Version:	4.1.0
-Release:	2
+Version:	4.1.1
+Release:	1
 Epoch:		1
 License:	GPLv3+
 Group:		Networking/Mail
@@ -16,8 +16,6 @@ Url:		http://www.claws-mail.org
 Source0:	http://www.claws-mail.org/releases/%{name}-%{version}.tar.xz
 # from Debian
 Patch0:		claws-mail-3.7.6-trashed-read.patch
-
-Patch1:		claws-mail-4.1.0-perl-5.36.patch
 
 BuildRequires:	bison
 BuildRequires:	flex
@@ -450,16 +448,17 @@ signatures or sign and encrypt your own mails.
 
 #----------------------------------------------------------------------------
 
-#package python-plugin
-#Summary:	Python scriptin access to Claws Mail
-#Group:		Networking/Mail
-#Requires:	%{name} = %{EVRD}
+%package python-plugin
+Summary:	Python scriptin access to Claws Mail
+Group:		Networking/Mail
+Requires:	%{name} = %{EVRD}
 
-#description python-plugin
-#This plugin offers a Python scripting access to Claws Mail.
+%description python-plugin
+This plugin offers a Python scripting access to Claws Mail.
 
-#files python-plugin
-#{_libdir}/%{name}/plugins/python.so
+%files python-plugin
+%{_libdir}/claws-mail/plugins/python.so
+%{_libdir}/claws-mail/plugins/web_extensions/fancywebextension.so
 
 #----------------------------------------------------------------------------
 
@@ -550,9 +549,7 @@ or received.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q
-%patch0 -p1
-%patch1 -p1
+%autosetup -p1
 
 %build
 ln -s %{_bindir}/python2 python
@@ -599,4 +596,3 @@ cp -a ABOUT-NLS AUTHORS NEWS README* TODO* RELEASE_NOTES tools %{buildroot}%{_do
 rm -f %{buildroot}%{_docdir}/claws-mail/tools/Makefile*
 
 %find_lang %{name}
-
