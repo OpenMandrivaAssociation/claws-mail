@@ -54,7 +54,7 @@ BuildRequires:	libxml2-devel
 BuildRequires:	openldap-devel
 BuildRequires:	perl-devel
 BuildRequires:	perl-ExtUtils-Embed
-BuildRequires:	pkgconfig(python2)
+BuildRequires:	pkgconfig(python)
 BuildRequires:	libytnef-devel
 BuildRequires:	pkgconfig(libical)
 
@@ -552,8 +552,8 @@ or received.
 %autosetup -p1
 
 %build
-ln -s %{_bindir}/python2 python
-export PATH=`pwd`:$PATH
+#ln -s %{_bindir}/python2 python
+#export PATH=`pwd`:$PATH
 
 %configure \
 	--enable-enchant \
