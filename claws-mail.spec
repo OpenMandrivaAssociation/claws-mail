@@ -457,7 +457,7 @@ Requires:	%{name} = %{EVRD}
 This plugin offers a Python scripting access to Claws Mail.
 
 %files python-plugin
-%{_libdir}/claws-mail/plugins/python.so
+#{_libdir}/claws-mail/plugins/python.so
 %{_libdir}/claws-mail/plugins/web_extensions/fancywebextension.so
 
 #----------------------------------------------------------------------------
