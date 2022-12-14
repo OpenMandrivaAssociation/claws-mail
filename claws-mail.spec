@@ -54,7 +54,7 @@ BuildRequires:	libxml2-devel
 BuildRequires:	openldap-devel
 BuildRequires:	perl-devel
 BuildRequires:	perl-ExtUtils-Embed
-BuildRequires:	pkgconfig(python2)
+BuildRequires:	pkgconfig(python)
 BuildRequires:	libytnef-devel
 BuildRequires:	pkgconfig(libical)
 
@@ -457,7 +457,7 @@ Requires:	%{name} = %{EVRD}
 This plugin offers a Python scripting access to Claws Mail.
 
 %files python-plugin
-%{_libdir}/claws-mail/plugins/python.so
+#{_libdir}/claws-mail/plugins/python.so
 %{_libdir}/claws-mail/plugins/web_extensions/fancywebextension.so
 
 #----------------------------------------------------------------------------
@@ -552,8 +552,8 @@ or received.
 %autosetup -p1
 
 %build
-ln -s %{_bindir}/python2 python
-export PATH=`pwd`:$PATH
+#ln -s %{_bindir}/python2 python
+#export PATH=`pwd`:$PATH
 
 %configure \
 	--enable-enchant \
