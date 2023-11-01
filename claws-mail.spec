@@ -51,7 +51,7 @@ BuildRequires:	compface-devel
 BuildRequires:	gpgme-devel > 0.4.5
 BuildRequires:	libetpan-devel >= 0.42
 BuildRequires:	libxml2-devel
-BuildRequires:	openldap-devel
+BuildRequires:	pkgconfig(ldap)
 BuildRequires:	perl-devel
 BuildRequires:	perl-ExtUtils-Embed
 BuildRequires:	pkgconfig(python)
