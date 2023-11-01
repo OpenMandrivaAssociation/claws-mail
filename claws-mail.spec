@@ -550,11 +550,9 @@ or received.
 
 %prep
 %autosetup -p1
+#find . -name "Makefile.*" |xargs sed -i -e 's|-Wl,--no-undefined||g'
 
 %build
-#ln -s %{_bindir}/python2 python
-#export PATH=`pwd`:$PATH
-
 %configure \
 	--enable-enchant \
 	--enable-jpilot \
@@ -568,6 +566,8 @@ or received.
 	--enable-networkmanager-support \
 	--disable-rpath \
 	--disable-static
+
+find . -name Makefile |xargs sed -i -e 's|-Wl,--no-undefined||g'
 
 %make_build LIBTOOL=%{_bindir}/libtool
 
