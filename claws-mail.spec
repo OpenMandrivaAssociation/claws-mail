@@ -5,10 +5,10 @@
 # modules required by these scripts
 #define __noautoreq 'perl(.*)'
 
-Summary:	The user-friendly, lightweight and fast GTK2 based email client
+Summary:	The user-friendly, lightweight and fast GTK3 based email client
 Name:		claws-mail
-Version:	4.1.1
-Release:	2
+Version:	4.2.0
+Release:	1
 Epoch:		1
 License:	GPLv3+
 Group:		Networking/Mail
@@ -69,7 +69,7 @@ Obsoletes:	%{name}-dillo_viewer-plugin < %{EVRD}
 Obsoletes:	%{name}-trayicon-plugin < %{EVRD}
 
 %description
-Claws-Mail is an e-mail client (and news reader) based on GTK+2, running
+Claws-Mail is an e-mail client (and news reader) based on GTK, running
 on X Window System, and aiming for:
  * Quick response
  * Graceful, and sophisticated interface
