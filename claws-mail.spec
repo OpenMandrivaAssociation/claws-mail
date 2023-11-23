@@ -278,20 +278,6 @@ and retrieval time.
 
 #----------------------------------------------------------------------------
 
-%package gdata-plugin
-Summary:	This Claws Mail plugin enables access to GData (Google services)
-Group:		Networking/Mail
-Requires:	%{name} = %{EVRD}
-
-%description gdata-plugin
-Plugin to access to GData (Google services). The only currently implemented
-feature is inclusion of Google contacts into the address completion.
-
-%files gdata-plugin
-%{_libdir}/%{name}/plugins/gdata.so
-
-#----------------------------------------------------------------------------
-
 %package keyword_warner-plugin
 Summary:        keyword_warner plugin for %{name}
 Group:          Networking/Mail
