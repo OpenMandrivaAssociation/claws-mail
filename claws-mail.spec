@@ -434,20 +434,6 @@ signatures or sign and encrypt your own mails.
 
 #----------------------------------------------------------------------------
 
-%package python-plugin
-Summary:	Python scriptin access to Claws Mail
-Group:		Networking/Mail
-Requires:	%{name} = %{EVRD}
-
-%description python-plugin
-This plugin offers a Python scripting access to Claws Mail.
-
-%files python-plugin
-#{_libdir}/claws-mail/plugins/python.so
-%{_libdir}/claws-mail/plugins/web_extensions/fancywebextension.so
-
-#----------------------------------------------------------------------------
-
 %package rssyl-plugin
 Summary:	This Claws Mail plugin allows you to read your favorite newsfeeds
 Group:		Networking/Mail
