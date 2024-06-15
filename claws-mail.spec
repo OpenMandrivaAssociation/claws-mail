@@ -44,7 +44,7 @@ BuildRequires:	pkgconfig(poppler)
 BuildRequires:	pkgconfig(poppler-glib)
 #BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(sm)
-BuildRequires:	pkgconfig(webkit2gtk-4.0)
+BuildRequires:	pkgconfig(webkit2gtk-4.1)
 BuildRequires:	pkgconfig(valgrind)
 BuildRequires:	compface-devel
 BuildRequires:	gpgme-devel > 0.4.5
