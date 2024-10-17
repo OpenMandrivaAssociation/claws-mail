@@ -12,7 +12,7 @@ Release:	1
 Epoch:		1
 License:	GPLv3+
 Group:		Networking/Mail
-Url:		http://www.claws-mail.org
+Url:		https://www.claws-mail.org
 Source0:	http://www.claws-mail.org/releases/%{name}-%{version}.tar.xz
 # from Debian
 Patch0:		claws-mail-3.7.6-trashed-read.patch
