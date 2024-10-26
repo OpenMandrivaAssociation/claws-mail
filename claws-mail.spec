@@ -45,7 +45,7 @@ BuildRequires:	pkgconfig(poppler)
 BuildRequires:	pkgconfig(poppler-glib)
 #BuildRequires:	pkgconfig(pygtk-2.0)
 BuildRequires:	pkgconfig(sm)
-BuildRequires:	pkgconfig(webkit2gtk-4.0)
+BuildRequires:	pkgconfig(webkit2gtk-4.1)
 BuildRequires:	pkgconfig(valgrind)
 BuildRequires:	compface-devel
 BuildRequires:	gpgme-devel > 0.4.5
@@ -54,7 +54,7 @@ BuildRequires:	libxml2-devel
 BuildRequires:	pkgconfig(ldap)
 BuildRequires:	perl-devel
 BuildRequires:	perl-ExtUtils-Embed
-BuildRequires:	pkgconfig(python)
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	libytnef-devel
 BuildRequires:	pkgconfig(libical)
 
@@ -114,6 +114,7 @@ For a complete listing of Features: http://www.claws-mail.org/features.php
 %{_datadir}/applications/claws-mail.desktop
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/plugins
+%{_libdir}/claws-mail/plugins/python.so
 %{_iconsdir}/hicolor/*/apps/*.png
 %{_docdir}/claws-mail
 
