@@ -47,6 +47,9 @@ BuildRequires:	pkgconfig(sm)
 BuildRequires:	pkgconfig(webkit2gtk-4.1)
 BuildRequires:	pkgconfig(valgrind)
 BuildRequires:	pkgconfig(gpg-error)
+BuildRequires:	pkgconfig(python3)
+BuildRequires:	pkgconfig(pygobject-3.0)
+BuildRequires:	pkgconfig(libcanberra-gtk3)
 BuildRequires:	compface-devel
 BuildRequires:	gpgme-devel > 0.4.5
 BuildRequires:	libetpan-devel >= 0.42
@@ -55,7 +58,6 @@ BuildRequires:	db18-devel
 BuildRequires:	pkgconfig(ldap)
 BuildRequires:	perl-devel
 BuildRequires:	perl-ExtUtils-Embed
-BuildRequires:	pkgconfig(python3)
 BuildRequires:	libytnef-devel
 BuildRequires:	pkgconfig(libical)
 
