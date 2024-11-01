@@ -551,7 +551,7 @@ or received.
 	--enable-gnutls \
 	--enable-networkmanager-support \
 	--disable-rpath \
-	--disable-static
+	--disable-static || (cat config.log ; exit 1)
 
 find . -name Makefile |xargs sed -i -e 's|-Wl,--no-undefined||g'
 
