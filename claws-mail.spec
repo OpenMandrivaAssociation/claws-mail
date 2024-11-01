@@ -7,9 +7,8 @@
 
 Summary:	The user-friendly, lightweight and fast GTK3 based email client
 Name:		claws-mail
-Version:	4.2.0
-Release:	2
-Epoch:		1
+Version:	4.3.0
+Release:	1
 License:	GPLv3+
 Group:		Networking/Mail
 Url:		https://www.claws-mail.org
@@ -578,7 +577,7 @@ install -m644 %{name}-128x128.png %{buildroot}%{_datadir}/icons/hicolor/128x128/
 mkdir -p %{buildroot}%{_datadir}/applications/
 install -m644 %{name}.desktop %{buildroot}%{_datadir}/applications/
 
-cp -a ABOUT-NLS AUTHORS NEWS README* TODO* RELEASE_NOTES tools %{buildroot}%{_docdir}/claws-mail/
+cp -a ABOUT-NLS AUTHORS NEWS README* RELEASE_NOTES tools %{buildroot}%{_docdir}/claws-mail/
 rm -f %{buildroot}%{_docdir}/claws-mail/tools/Makefile*
 
 %find_lang %{name}
