@@ -46,6 +46,7 @@ BuildRequires:	pkgconfig(poppler-glib)
 BuildRequires:	pkgconfig(sm)
 BuildRequires:	pkgconfig(webkit2gtk-4.1)
 BuildRequires:	pkgconfig(valgrind)
+BuildRequires:	pkgconfig(gpg-error)
 BuildRequires:	compface-devel
 BuildRequires:	gpgme-devel > 0.4.5
 BuildRequires:	libetpan-devel >= 0.42
