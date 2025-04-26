@@ -8,7 +8,7 @@
 Summary:	The user-friendly, lightweight and fast GTK3 based email client
 Name:		claws-mail
 Version:	4.3.1
-Release:	1
+Release:	2
 License:	GPLv3+
 Group:		Networking/Mail
 Url:		https://www.claws-mail.org
@@ -258,12 +258,14 @@ Renders HTML e-mail using dillo webbrowser
 Summary:        This plugin renders HTML e-mails through WebKit
 Group:          Networking/Mail
 Requires:       %{name} = %{EVRD}
+Obsoletes:	%{name}-python-plugin
 
 %description fancy-plugin
 Renders HTML e-mail using the WebKit library
 
 %files fancy-plugin
 %{_libdir}/%{name}/plugins/fancy*
+%{_libdir}/claws-mail/web_extensions/fancywebextension.so
 
 #----------------------------------------------------------------------------
 
@@ -437,19 +439,6 @@ signatures or sign and encrypt your own mails.
 %{_libdir}/%{name}/plugins/pgpmime.deps
 
 #----------------------------------------------------------------------------
-%package python-plugin
-Summary:	Python scriptin access to Claws Mail
-Group:		Networking/Mail
-Requires:	%{name} = %{EVRD}
-
-%description python-plugin
-This plugin offers a Python scripting access to Claws Mail.
-
-%files python-plugin
-%{_libdir}/claws-mail/web_extensions/fancywebextension.so
-
-#----------------------------------------------------------------------------
-
 
 %package rssyl-plugin
 Summary:	This Claws Mail plugin allows you to read your favorite newsfeeds
