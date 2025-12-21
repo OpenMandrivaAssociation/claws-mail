@@ -8,7 +8,7 @@
 Summary:	The user-friendly, lightweight and fast GTK3 based email client
 Name:		claws-mail
 Version:	4.3.1
-Release:	3
+Release:	4
 License:	GPLv3+
 Group:		Networking/Mail
 Url:		https://www.claws-mail.org
@@ -39,7 +39,6 @@ BuildRequires:	pkgconfig(libnm)
 BuildRequires:	pkgconfig(librsvg-2.0)
 BuildRequires:	pkgconfig(libstartup-notification-1.0) >= 0.5
 BuildRequires:	pkgconfig(libxml-2.0)
-BuildRequires:	pkgconfig(pilot-link)
 BuildRequires:	pkgconfig(poppler)
 BuildRequires:	pkgconfig(poppler-glib)
 #BuildRequires:	pkgconfig(pygtk-2.0)
@@ -533,7 +532,7 @@ or received.
 %build
 %configure \
 	--enable-enchant \
-	--enable-jpilot \
+	--disable-jpilot \
 	--enable-ldap \
 	--enable-crash-dialog \
 	--enable-spamassassin-plugin \
