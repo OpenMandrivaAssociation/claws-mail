@@ -16,6 +16,11 @@ Source0:	http://www.claws-mail.org/releases/%{name}-%{version}.tar.xz
 # from Debian
 Patch0:		claws-mail-3.7.6-trashed-read.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	docbook-utils
