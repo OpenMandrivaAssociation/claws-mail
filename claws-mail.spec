@@ -8,7 +8,7 @@
 Summary:	The user-friendly, lightweight and fast GTK3 based email client
 Name:		claws-mail
 Version:	4.3.1
-Release:	4
+Release:	5
 License:	GPLv3+
 Group:		Networking/Mail
 Url:		https://www.claws-mail.org
@@ -25,7 +25,6 @@ BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	docbook-utils
 BuildRequires:	imagemagick
-BuildRequires:	libtool
 BuildRequires:	pkgconfig(cairo)
 BuildRequires:	pkgconfig(dbus-1) >= 0.60
 BuildRequires:	pkgconfig(dbus-glib-1) >= 0.60
