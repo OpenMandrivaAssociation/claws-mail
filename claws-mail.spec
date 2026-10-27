@@ -1,5 +1,6 @@
 %define _disable_ld_no_undefined 1
 %define _disable_rebuild_configure 1
+%global optflags %{optflags} -Wno-error -Wno-implicit-function-declaration
 
 # There are perl scripts in docs/tools and we don't want to install perl
 # modules required by these scripts
