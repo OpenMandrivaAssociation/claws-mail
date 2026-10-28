@@ -16,6 +16,8 @@ Url:		https://www.claws-mail.org
 Source0:	http://www.claws-mail.org/releases/%{name}-%{version}.tar.xz
 # from Debian
 Patch0:		claws-mail-3.7.6-trashed-read.patch
+# from Arch
+Patch1:		libical-4.patch
 
 BuildRequires:	autoconf
 BuildRequires:	automake
